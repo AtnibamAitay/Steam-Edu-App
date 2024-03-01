@@ -1,0 +1,29 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/NotoSerifSC-Bold.otf",
+      "sha1": "c9ee9882b8ad96a2e6b28f385854e84065049e6c"
+    },
+    {
+      "path": "assets/fonts/NotoSerifSC-Medium.otf",
+      "sha1": "c6bc5c9c5290436e0201cf9a94529579427a66b3"
+    },
+    {
+      "path": "assets/fonts/NotoSerifSC-Regular.otf",
+      "sha1": "6d7978ca8e99c69e726cda003dd8973b7414ea06"
+    },
+    {
+      "path": "assets/fonts/NotoSerifSC-SemiBold.otf",
+      "sha1": "3e8468646d755a4d52efacd2376d1c755ecb0b47"
+    },
+    {
+      "path": "assets/fonts/PingFang-Blod.ttf",
+      "sha1": "458dd75f5939af2b215497825b6aaefb48f1ac22"
+    },
+    {
+      "path": "assets/fonts/SmileySans-Oblique.ttf",
+      "sha1": "1a6f0098377564a0baaf95d1a859c212f4fe6231"
+    }
+  ]
+}

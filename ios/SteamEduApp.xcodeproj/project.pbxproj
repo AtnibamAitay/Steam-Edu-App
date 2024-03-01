@@ -14,6 +14,12 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-SteamEduApp-SteamEduAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-SteamEduApp-SteamEduAppTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		5ED93FB2A95D4406A519EFB5 /* NotoSerifSC-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D076EA8C0F1149F09A35274E /* NotoSerifSC-Bold.otf */; };
+		0852EAA1A5464357A28A8277 /* NotoSerifSC-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 44E7FCB78484497DAC34F5FC /* NotoSerifSC-Medium.otf */; };
+		8C4F9022930F492A82DC5AF8 /* NotoSerifSC-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E21B2E662E684BC4BF0903A6 /* NotoSerifSC-Regular.otf */; };
+		487D24B347954015B9F5FF68 /* NotoSerifSC-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C88BD982C51148E0991B0778 /* NotoSerifSC-SemiBold.otf */; };
+		7EB981E4AF4A4CC5807354DA /* PingFang-Blod.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A53612106F994C25B8382FFA /* PingFang-Blod.ttf */; };
+		1B56FDD20D3F47E987E35848 /* SmileySans-Oblique.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AD84C3FDB764CFF8CA83473 /* SmileySans-Oblique.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +50,12 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = SteamEduApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-SteamEduApp-SteamEduAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SteamEduApp-SteamEduAppTests.release.xcconfig"; path = "Target Support Files/Pods-SteamEduApp-SteamEduAppTests/Pods-SteamEduApp-SteamEduAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		D076EA8C0F1149F09A35274E /* NotoSerifSC-Bold.otf */ = {isa = PBXFileReference; name = "NotoSerifSC-Bold.otf"; path = "../assets/fonts/NotoSerifSC-Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		44E7FCB78484497DAC34F5FC /* NotoSerifSC-Medium.otf */ = {isa = PBXFileReference; name = "NotoSerifSC-Medium.otf"; path = "../assets/fonts/NotoSerifSC-Medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E21B2E662E684BC4BF0903A6 /* NotoSerifSC-Regular.otf */ = {isa = PBXFileReference; name = "NotoSerifSC-Regular.otf"; path = "../assets/fonts/NotoSerifSC-Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C88BD982C51148E0991B0778 /* NotoSerifSC-SemiBold.otf */ = {isa = PBXFileReference; name = "NotoSerifSC-SemiBold.otf"; path = "../assets/fonts/NotoSerifSC-SemiBold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A53612106F994C25B8382FFA /* PingFang-Blod.ttf */ = {isa = PBXFileReference; name = "PingFang-Blod.ttf"; path = "../assets/fonts/PingFang-Blod.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9AD84C3FDB764CFF8CA83473 /* SmileySans-Oblique.ttf */ = {isa = PBXFileReference; name = "SmileySans-Oblique.ttf"; path = "../assets/fonts/SmileySans-Oblique.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +134,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				49DB4A54F46C40ACAD46C90C /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -147,6 +160,20 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		49DB4A54F46C40ACAD46C90C /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				D076EA8C0F1149F09A35274E /* NotoSerifSC-Bold.otf */,
+				44E7FCB78484497DAC34F5FC /* NotoSerifSC-Medium.otf */,
+				E21B2E662E684BC4BF0903A6 /* NotoSerifSC-Regular.otf */,
+				C88BD982C51148E0991B0778 /* NotoSerifSC-SemiBold.otf */,
+				A53612106F994C25B8382FFA /* PingFang-Blod.ttf */,
+				9AD84C3FDB764CFF8CA83473 /* SmileySans-Oblique.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -243,6 +270,12 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				5ED93FB2A95D4406A519EFB5 /* NotoSerifSC-Bold.otf in Resources */,
+				0852EAA1A5464357A28A8277 /* NotoSerifSC-Medium.otf in Resources */,
+				8C4F9022930F492A82DC5AF8 /* NotoSerifSC-Regular.otf in Resources */,
+				487D24B347954015B9F5FF68 /* NotoSerifSC-SemiBold.otf in Resources */,
+				7EB981E4AF4A4CC5807354DA /* PingFang-Blod.ttf in Resources */,
+				1B56FDD20D3F47E987E35848 /* SmileySans-Oblique.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
