@@ -1,12 +1,14 @@
 import React, {useState, useEffect} from 'react';
-import {ScrollView, StyleSheet} from 'react-native';
+import {ScrollView, StyleSheet, View, SafeAreaView} from 'react-native';
 import {api} from '../../config';
 import CourseCard from '../components/discover/CourseCard';
 import UserInfo from '../components/discover/UserInfo';
+import AdaptiveCourse from '../components/discover/AdaptiveCourse';
 
 const Discover = () => {
   const [courses, setCourses] = useState([]);
   const [userInfo, setUserInfo] = useState(null);
+  const [adaptiveCourses, setAdaptiveCourses] = useState([]);
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -36,18 +38,58 @@ const Discover = () => {
       }
     };
 
+    const fetchAdaptiveCourses = async () => {
+      try {
+        const response3 = await api.get('/spu');
+        if (response3.data.code === 200) {
+          setAdaptiveCourses(response3.data.data);
+        }
+      } catch (error) {
+        console.error('Failed to fetch adaptive courses:', error);
+      }
+    };
+
     fetchCourses();
     fetchUserInfo();
+    fetchAdaptiveCourses();
   }, []);
 
   return (
-    <ScrollView style={styles.container}>
-      {userInfo && <UserInfo userInfo={userInfo} />}
+    <SafeAreaView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.content}>
+        {userInfo && (
+          <View style={styles.componentWrapper}>
+            <UserInfo userInfo={userInfo} />
+          </View>
+        )}
 
-      {courses.map(course => (
-        <CourseCard key={course.courseId} {...course} />
-      ))}
-    </ScrollView>
+        {/* 将 AdaptiveCourses 移动到这里 */}
+        <View style={styles.componentWrapper}>
+          <View style={styles.horizontalScrollContainer}>
+            <ScrollView
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}>
+              {adaptiveCourses.map(course => (
+                <AdaptiveCourse
+                  key={course.courseId}
+                  courseId={course.courseId}
+                  name={course.name}
+                  userName={course.userName}
+                  salesVolume={course.salesVolume}
+                />
+              ))}
+            </ScrollView>
+          </View>
+        </View>
+
+        {/* 课程卡片列表 */}
+        <View style={styles.componentWrapper}>
+          {courses.map(course => (
+            <CourseCard key={course.courseId} {...course} />
+          ))}
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -55,6 +97,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f2f2f2',
+  },
+  content: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  componentWrapper: {
+    width: '100%',
+    paddingHorizontal: 16,
+  },
+  horizontalScrollContainer: {
+    flexGrow: 1,
+    width: '100%',
   },
 });
 

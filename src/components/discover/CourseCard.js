@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     padding: 16,
     marginBottom: 12,
-    width: '93%',
   },
   courseTitle: {
     color: '#000000',
