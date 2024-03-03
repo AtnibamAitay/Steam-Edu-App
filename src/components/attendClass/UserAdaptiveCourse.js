@@ -1,11 +1,10 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-const AdaptiveCourse = ({courseId, name, userName, salesVolume}) => (
+const UserAdaptiveCourse = ({courseId, name, userName}) => (
   <View style={styles.AdaptiveCourse}>
     <Text style={styles.courseName}>{name}</Text>
     <Text style={styles.userName}>{userName}</Text>
-    <Text style={styles.salesVolume}>{salesVolume}人已上课</Text>
   </View>
 );
 
@@ -16,7 +15,7 @@ const styles = StyleSheet.create({
     padding: 16,
     margin: 8,
     height: 150,
-    width: 125,
+    width: 110,
   },
   courseName: {
     fontSize: 20,
@@ -34,4 +33,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AdaptiveCourse;
+export default UserAdaptiveCourse;
