@@ -23,6 +23,10 @@ const My = () => {
   const buttonBackgroundColor = isDarkMode ? '#262626' : '#FFFFFF';
   const buttonTextBackgroundColor = isDarkMode ? '#FFFFFF' : '#000000';
 
+  const handleSettingsPress = () => {
+    navigation.navigate('Settings');
+  };
+
   useEffect(() => {
     async function fetchUserInfo() {
       const storedUserName = await AsyncStorage.getItem('userName');
@@ -47,57 +51,76 @@ const My = () => {
 
   return (
     <View style={[styles.container, {backgroundColor}]}>
+      {/* 用户信息 */}
       <View style={styles.userProfile}>
-        {avatarUri ? (
-          <Image
-            source={avatarUri}
-            style={{
-              width: 50,
-              height: 50,
-              borderRadius: 25,
-              overflow: 'hidden',
-            }}
-          />
-        ) : (
-          <Image
-            source={defaultAvatar}
-            style={{width: 50, height: 50, borderRadius: 25}}
-          />
-        )}
+        <Image
+          source={avatarUri || defaultAvatar}
+          style={{
+            width: 50,
+            height: 50,
+            borderRadius: 25,
+            overflow: 'hidden',
+          }}
+        />
         <Text style={styles.userName}>{userName}</Text>
       </View>
+
+      {/* 按钮组 */}
       <TouchableOpacity
-        style={[styles.button, {backgroundColor: buttonBackgroundColor}]}>
+        style={[
+          styles.button,
+          {backgroundColor: buttonBackgroundColor},
+          styles.specialMarginButtonGroup, // 需要零间距的按钮组样式
+        ]}>
         <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
           我的信息
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={[styles.button, {backgroundColor: buttonBackgroundColor}]}>
+        style={[
+          styles.button,
+          {backgroundColor: buttonBackgroundColor},
+          styles.specialMarginButtonGroup,
+        ]}>
         <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
           选课单
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={[styles.button, {backgroundColor: buttonBackgroundColor}]}>
+        style={[
+          styles.button,
+          {backgroundColor: buttonBackgroundColor},
+          styles.specialMarginButtonGroup,
+        ]}>
         <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
           课程历史
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={[styles.button, {backgroundColor: buttonBackgroundColor}]}>
+        style={[
+          styles.button,
+          {backgroundColor: buttonBackgroundColor},
+          styles.specialMarginButtonGroup,
+        ]}>
         <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
           收藏
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={[styles.button, {backgroundColor: buttonBackgroundColor}]}>
+        style={[
+          styles.button,
+          {backgroundColor: buttonBackgroundColor},
+          styles.specialMarginButtonGroup,
+        ]}>
         <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
           优惠券
         </Text>
       </TouchableOpacity>
+
+      {/* 默认间距的按钮 */}
       <TouchableOpacity
-        style={[styles.button, {backgroundColor: buttonBackgroundColor}]}>
+        style={[styles.button, {backgroundColor: buttonBackgroundColor}]}
+        onPress={handleSettingsPress}>
         <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
           设置
         </Text>
@@ -142,28 +165,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  specialMarginButtonGroup: {
+    marginVertical: 0,
+  },
   buttonText: {
     fontSize: 16,
     color: '#000000',
-    fontFamily: 'NotoSerifSC-Regular',
-  },
-  buttonTextCentered: {
-    textAlign: 'center',
-  },
-  centeredButtonText: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  versionContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '93%',
-    marginTop: 8,
-  },
-  versionText: {
-    fontSize: 14,
-    color: '#8e8e8e',
     fontFamily: 'NotoSerifSC-Regular',
   },
 });
