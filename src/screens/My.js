@@ -30,7 +30,7 @@ const My = () => {
   const handleCouponPress = () => {
     navigation.navigate('CouponListScreen');
   };
-  const givePositiveReview = () => {
+  const handleGivePositiveReviewPress = () => {
     ToastAndroid.show('ᕦ(･ㅂ･)ᕤ 我们将会变得更好！', ToastAndroid.SHORT);
   };
 
@@ -135,7 +135,7 @@ const My = () => {
       </TouchableOpacity>
       <TouchableOpacity
         style={[styles.button, {backgroundColor: buttonBackgroundColor}]}
-        onPress={givePositiveReview}>
+        onPress={handleGivePositiveReviewPress}>
         <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
           给我们好评
         </Text>
