@@ -6,6 +6,7 @@ import {
   Image,
   useColorScheme,
   TouchableOpacity,
+  ToastAndroid,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import BottomNavigation from '../components/common/BottomNavigation';
@@ -28,6 +29,9 @@ const My = () => {
   };
   const handleCouponPress = () => {
     navigation.navigate('CouponListScreen');
+  };
+  const givePositiveReview = () => {
+    ToastAndroid.show('ᕦ(･ㅂ･)ᕤ 我们将会变得更好！', ToastAndroid.SHORT);
   };
 
   useEffect(() => {
@@ -130,7 +134,8 @@ const My = () => {
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={[styles.button, {backgroundColor: buttonBackgroundColor}]}>
+        style={[styles.button, {backgroundColor: buttonBackgroundColor}]}
+        onPress={givePositiveReview}>
         <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
           给我们好评
         </Text>
