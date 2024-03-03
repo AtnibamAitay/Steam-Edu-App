@@ -26,6 +26,9 @@ const My = () => {
   const handleSettingsPress = () => {
     navigation.navigate('Settings');
   };
+  const handleCouponPress = () => {
+    navigation.navigate('CouponListScreen');
+  };
 
   useEffect(() => {
     async function fetchUserInfo() {
@@ -111,7 +114,8 @@ const My = () => {
           styles.button,
           {backgroundColor: buttonBackgroundColor},
           styles.specialMarginButtonGroup,
-        ]}>
+        ]}
+        onPress={handleCouponPress}>
         <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
           优惠券
         </Text>
