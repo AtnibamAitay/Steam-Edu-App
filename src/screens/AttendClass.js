@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import NavigationService from '../service/NavigationService';
-import {getEnvVars, api} from '../config';
+import {StyleSheet, View, Text} from 'react-native';
+import BottomNavigation from '../components/common/BottomNavigation';
+import {useNavigation} from '@react-navigation/native';
 
 const AttendClass = () => {
+  const navigation = useNavigation();
   const [message, setMessage] = useState('Hello World!');
 
   useEffect(() => {
@@ -15,6 +15,8 @@ const AttendClass = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{message}</Text>
+
+      <BottomNavigation currentRoute="AttendClass" navigation={navigation} />
     </View>
   );
 };
@@ -25,11 +27,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
+    paddingBottom: 56, // 确保内容不被底部导航栏遮挡
   },
   text: {
     fontSize: 24,
     fontWeight: 'bold',
-    fontFamily: 'NotoSerifSC-Regular', // 使用已存在的字体文件
+    fontFamily: 'NotoSerifSC-Regular',
   },
 });
 

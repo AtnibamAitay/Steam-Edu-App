@@ -5,7 +5,7 @@ const AdaptiveCourse = ({courseId, name, userName, salesVolume}) => (
   <View style={styles.AdaptiveCourse}>
     <Text style={styles.courseName}>{name}</Text>
     <Text style={styles.userName}>{userName}</Text>
-    <Text style={styles.salesVolume}>{salesVolume}</Text>
+    <Text style={styles.salesVolume}>{salesVolume}人已上课</Text>
   </View>
 );
 
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     margin: 8,
   },
   courseName: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
     color: '#fff',
   },
@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
   },
   salesVolume: {
     fontSize: 14,
-    color: '#fff',
+    color: '#3656FC',
+    backgroundColor: '#fff',
   },
 });
 
