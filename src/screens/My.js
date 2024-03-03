@@ -1,39 +1,169 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  useColorScheme,
+  TouchableOpacity,
+} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import BottomNavigation from '../components/common/BottomNavigation';
 import {useNavigation} from '@react-navigation/native';
+const defaultAvatar = require('../../assets/img/common/Avatar.jpg');
 
 const My = () => {
   const navigation = useNavigation();
-  const [message, setMessage] = useState('Hello World!');
+  const scheme = useColorScheme();
+  const isDarkMode = scheme === 'dark';
+  const [userName, setUserName] = useState('');
+  const [avatarUri, setAvatarUri] = useState('');
+
+  const backgroundColor = isDarkMode ? '#1C1C1C' : '#F2F2F2';
+  const buttonBackgroundColor = isDarkMode ? '#262626' : '#FFFFFF';
+  const buttonTextBackgroundColor = isDarkMode ? '#FFFFFF' : '#000000';
 
   useEffect(() => {
-    // 这里可以编写检查登录状态的逻辑，如果未登录则跳转至登录页
-    // 暂时不涉及请求，因此此处为空
+    async function fetchUserInfo() {
+      const storedUserName = await AsyncStorage.getItem('userName');
+      if (storedUserName) {
+        setUserName(storedUserName);
+      }
+
+      const storedAvatarUrl = await AsyncStorage.getItem('avatar');
+      let avatarSource;
+
+      if (storedAvatarUrl && storedAvatarUrl !== '') {
+        avatarSource = {uri: storedAvatarUrl};
+      } else {
+        avatarSource = defaultAvatar;
+      }
+
+      setAvatarUri(avatarSource);
+    }
+
+    fetchUserInfo();
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>{message}</Text>
+    <View style={[styles.container, {backgroundColor}]}>
+      <View style={styles.userProfile}>
+        {avatarUri ? (
+          <Image
+            source={avatarUri}
+            style={{
+              width: 50,
+              height: 50,
+              borderRadius: 25,
+              overflow: 'hidden',
+            }}
+          />
+        ) : (
+          <Image
+            source={defaultAvatar}
+            style={{width: 50, height: 50, borderRadius: 25}}
+          />
+        )}
+        <Text style={styles.userName}>{userName}</Text>
+      </View>
+      <TouchableOpacity
+        style={[styles.button, {backgroundColor: buttonBackgroundColor}]}>
+        <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
+          我的信息
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.button, {backgroundColor: buttonBackgroundColor}]}>
+        <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
+          选课单
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.button, {backgroundColor: buttonBackgroundColor}]}>
+        <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
+          课程历史
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.button, {backgroundColor: buttonBackgroundColor}]}>
+        <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
+          收藏
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.button, {backgroundColor: buttonBackgroundColor}]}>
+        <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
+          优惠券
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.button, {backgroundColor: buttonBackgroundColor}]}>
+        <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
+          设置
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.button, {backgroundColor: buttonBackgroundColor}]}>
+        <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
+          给我们好评
+        </Text>
+      </TouchableOpacity>
 
-      {/* 引入底部导航栏 */}
       <BottomNavigation currentRoute="My" navigation={navigation} />
     </View>
   );
 };
 
-// 样式调整以适应底部导航栏
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: 0,
+    alignItems: 'center',
+  },
+  userProfile: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  userName: {
+    fontSize: 18,
+    color: '#000000',
+    fontFamily: 'NotoSerifSC-Regular',
+    textAlign: 'center',
+    marginTop: 10,
+  },
+  button: {
+    paddingVertical: 5,
+    paddingHorizontal: 16,
+    marginVertical: 8,
+    width: '93%',
+    borderRadius: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  buttonText: {
+    fontSize: 16,
+    color: '#000000',
+    fontFamily: 'NotoSerifSC-Regular',
+  },
+  buttonTextCentered: {
+    textAlign: 'center',
+  },
+  centeredButtonText: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
-    paddingBottom: 56, // 确保内容不被底部导航栏遮挡
   },
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
+  versionContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '93%',
+    marginTop: 8,
+  },
+  versionText: {
+    fontSize: 14,
+    color: '#8e8e8e',
     fontFamily: 'NotoSerifSC-Regular',
   },
 });
