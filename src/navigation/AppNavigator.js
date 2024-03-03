@@ -6,7 +6,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import SettingsScreen from '../screens/SettingsScreen';
 import {Image, TouchableOpacity, useColorScheme} from 'react-native';
+import AttendClass from '../screens/AttendClass';
 import Discover from '../screens/Discover';
+import My from '../screens/My';
+import Chat from '../screens/Chat';
 
 const Stack = createStackNavigator();
 
@@ -81,10 +84,21 @@ export default function AppNavigator() {
         options={{headerShown: false}}
       />
       <Stack.Screen
+        name="AttendClass"
+        component={AttendClass}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
         name="Discover"
         component={Discover}
         options={{headerShown: false}}
       />
+      <Stack.Screen
+        name="Chat"
+        component={Chat}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen name="My" component={My} options={{headerShown: false}} />
       <Stack.Screen
         name="Settings"
         component={SettingsScreen}

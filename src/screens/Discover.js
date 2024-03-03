@@ -4,12 +4,15 @@ import {api} from '../../config';
 import CourseCard from '../components/discover/CourseCard';
 import UserInfo from '../components/discover/UserInfo';
 import AdaptiveCourse from '../components/discover/AdaptiveCourse';
+import BottomNavigation from '../components/common/BottomNavigation';
+import {useNavigation} from '@react-navigation/native';
 
 const Discover = () => {
   const [courses, setCourses] = useState([]);
   const [userInfo, setUserInfo] = useState(null);
   const [adaptiveCourses, setAdaptiveCourses] = useState([]);
-
+  const routeName = 'Discover';
+  const navigation = useNavigation();
   useEffect(() => {
     const fetchCourses = async () => {
       try {
@@ -89,6 +92,7 @@ const Discover = () => {
           ))}
         </View>
       </ScrollView>
+      <BottomNavigation currentRoute={routeName} navigation={navigation} />
     </SafeAreaView>
   );
 };
@@ -96,20 +100,31 @@ const Discover = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#ffffff',
+    paddingHorizontal: 16,
   },
   content: {
     flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingBottom: 50,
   },
   componentWrapper: {
     width: '100%',
-    paddingHorizontal: 16,
   },
   horizontalScrollContainer: {
     flexGrow: 1,
     width: '100%',
+  },
+
+  // 添加一个新的样式用于 BottomNavigation
+  bottomNavigation: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    borderTopWidth: 1,
+    borderTopColor: '#ccc',
   },
 });
 
