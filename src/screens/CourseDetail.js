@@ -5,6 +5,7 @@ import CoverCarousel from '../components/discover/courseDetail/CoverCarousel';
 import StockAndCountdown from '../components/discover/courseDetail/StockAndCountdown';
 import CourseNameCard from '../components/discover/courseDetail/CourseNameCard';
 import ScoreAndSales from '../components/discover/courseDetail/ScoreAndSales';
+import TeacherList from '../components/discover/courseDetail/TeacherList';
 
 const CourseDetail = ({route}) => {
   const [courseDetail, setCourseDetail] = useState(null);
@@ -37,7 +38,6 @@ const CourseDetail = ({route}) => {
 
       {courseDetail && (
         <View style={styles.courseInfoContainer}>
-          {/* 其他课程详细信息展示... */}
           {/* 显示价格、剩余名额及倒计时组件 */}
           <StockAndCountdown
             price={courseDetail.price}
@@ -48,13 +48,15 @@ const CourseDetail = ({route}) => {
           {/* 显示课程名称卡片 */}
           <CourseNameCard name={courseDetail.name} />
           {/* 显示评分与销量统计组件 */}
-          {courseDetail && (
-            <ScoreAndSales
-              totalComprehensiveScore={courseDetail.totalComprehensiveScore}
-              salesVolume={courseDetail.salesVolume}
-              totalClasses={courseDetail.totalClasses}
-            />
-          )}
+          <ScoreAndSales
+            totalComprehensiveScore={courseDetail.totalComprehensiveScore}
+            salesVolume={courseDetail.salesVolume}
+            totalClasses={courseDetail.totalClasses}
+          />
+          {/* 显示教师列表组件 */}
+          <View style={styles.courseInfoContainer}>
+            <TeacherList teacher={courseDetail.teacher} />
+          </View>
         </View>
       )}
     </ScrollView>
