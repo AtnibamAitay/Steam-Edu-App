@@ -30,6 +30,9 @@ const My = () => {
   const handleCouponPress = () => {
     navigation.navigate('CouponListScreen');
   };
+  const handleCourseCartPress = () => {
+    navigation.navigate('CourseCartScreen');
+  };
   const handleGivePositiveReviewPress = () => {
     ToastAndroid.show('ᕦ(･ㅂ･)ᕤ 我们将会变得更好！', ToastAndroid.SHORT);
   };
@@ -88,7 +91,8 @@ const My = () => {
           styles.button,
           {backgroundColor: buttonBackgroundColor},
           styles.specialMarginButtonGroup,
-        ]}>
+        ]}
+        onPress={handleCourseCartPress}>
         <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
           选课单
         </Text>

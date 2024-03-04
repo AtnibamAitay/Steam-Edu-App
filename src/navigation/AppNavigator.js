@@ -11,6 +11,7 @@ import Discover from '../screens/Discover';
 import My from '../screens/My';
 import Chat from '../screens/Chat';
 import CouponListScreen from '../screens/CouponListScreen';
+import CourseCartScreen from '../screens/CourseCartScreen';
 
 const Stack = createStackNavigator();
 
@@ -100,6 +101,35 @@ export default function AppNavigator() {
         options={{headerShown: false}}
       />
       <Stack.Screen name="My" component={My} options={{headerShown: false}} />
+      <Stack.Screen
+        name="CourseCartScreen"
+        component={CourseCartScreen}
+        options={({navigation}) => ({
+          title: '选课单页',
+          headerStyle: {
+            backgroundColor: scheme === 'dark' ? '#1C1C1C' : '#F2F2F2',
+            shadowOpacity: 0, // iOS
+            shadowOffset: {height: 0, width: 0}, // iOS
+            shadowRadius: 0, // iOS
+            elevation: 0, // Android
+          },
+          headerTintColor: scheme === 'dark' ? '#FFFFFF' : 'black',
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={{marginLeft: 12}}>
+              <Image
+                source={require('../../assets/icon/common/left.png')}
+                style={{
+                  width: 22,
+                  height: 22,
+                  tintColor: scheme === 'dark' ? '#FFFFFF' : 'black',
+                }}
+              />
+            </TouchableOpacity>
+          ),
+        })}
+      />
       <Stack.Screen
         name="CouponListScreen"
         component={CouponListScreen}
