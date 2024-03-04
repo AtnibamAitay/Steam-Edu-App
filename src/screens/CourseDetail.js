@@ -7,6 +7,7 @@ import CourseNameCard from '../components/discover/courseDetail/CourseNameCard';
 import ScoreAndSales from '../components/discover/courseDetail/ScoreAndSales';
 import TeacherList from '../components/discover/courseDetail/TeacherList';
 import CourseDetailComments from '../components/discover/courseDetail/CourseDetailComments';
+import MerchantInfoCard from '../components/discover/courseDetail/MerchantInfoCard';
 
 const CourseDetail = ({route}) => {
   const [courseDetail, setCourseDetail] = useState(null);
@@ -59,6 +60,8 @@ const CourseDetail = ({route}) => {
             <TeacherList teacher={courseDetail.teacher} />
           </View>
           <CourseDetailComments spuId={courseDetail.courseId} />
+          {/* 显示商户信息卡片 */}
+          <MerchantInfoCard merchant={courseDetail.merchant} />
         </View>
       )}
     </ScrollView>
