@@ -6,6 +6,7 @@ import StockAndCountdown from '../components/discover/courseDetail/StockAndCount
 import CourseNameCard from '../components/discover/courseDetail/CourseNameCard';
 import ScoreAndSales from '../components/discover/courseDetail/ScoreAndSales';
 import TeacherList from '../components/discover/courseDetail/TeacherList';
+import CourseDetailComments from '../components/discover/courseDetail/CourseDetailComments';
 
 const CourseDetail = ({route}) => {
   const [courseDetail, setCourseDetail] = useState(null);
@@ -57,6 +58,7 @@ const CourseDetail = ({route}) => {
           <View style={styles.courseInfoContainer}>
             <TeacherList teacher={courseDetail.teacher} />
           </View>
+          <CourseDetailComments spuId={courseDetail.courseId} />
         </View>
       )}
     </ScrollView>
