@@ -72,24 +72,26 @@ const Discover = () => {
             <ScrollView
               horizontal={true}
               showsHorizontalScrollIndicator={false}>
-              {adaptiveCourses.map(course => (
-                <AdaptiveCourse
-                  key={course.courseId}
-                  courseId={course.courseId}
-                  name={course.name}
-                  userName={course.userName}
-                  salesVolume={course.salesVolume}
-                />
-              ))}
+              {adaptiveCourses &&
+                adaptiveCourses.map(course => (
+                  <AdaptiveCourse
+                    key={course.courseId}
+                    courseId={course.courseId}
+                    name={course.name}
+                    userName={course.userName}
+                    salesVolume={course.salesVolume}
+                  />
+                ))}
             </ScrollView>
           </View>
         </View>
 
         {/* 课程卡片列表 */}
         <View style={styles.componentWrapper}>
-          {courses.map(course => (
-            <CourseCard key={course.courseId} {...course} />
-          ))}
+          {courses &&
+            courses.map(course => (
+              <CourseCard key={course.courseId} {...course} />
+            ))}
         </View>
       </ScrollView>
       <BottomNavigation currentRoute={routeName} navigation={navigation} />
