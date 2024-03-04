@@ -1,7 +1,9 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 const CourseCard = ({
+  courseId,
   courseType,
   name,
   distanceFromUser,
@@ -9,6 +11,7 @@ const CourseCard = ({
   teacher,
   price,
 }) => {
+  const navigation = useNavigation();
   const getCourseTypeText = type => {
     switch (type) {
       case 1:
@@ -20,8 +23,12 @@ const CourseCard = ({
     }
   };
 
+  const handleCoursePress = () => {
+    navigation.navigate('CourseDetail', {courseId: courseId});
+  };
+
   return (
-    <View style={styles.cardContainer}>
+    <TouchableOpacity style={styles.cardContainer} onPress={handleCoursePress}>
       <View style={styles.priceTag}>
         <Text style={styles.priceText}>￥{price}</Text>
       </View>
@@ -39,7 +46,7 @@ const CourseCard = ({
           </View>
         ))}
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

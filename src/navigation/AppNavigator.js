@@ -12,6 +12,7 @@ import My from '../screens/My';
 import Chat from '../screens/Chat';
 import CouponListScreen from '../screens/CouponListScreen';
 import CourseCartScreen from '../screens/CourseCartScreen';
+import CourseDetail from '../screens/CourseDetail';
 
 const Stack = createStackNavigator();
 
@@ -93,6 +94,11 @@ export default function AppNavigator() {
       <Stack.Screen
         name="Discover"
         component={Discover}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="CourseDetail"
+        component={CourseDetail}
         options={{headerShown: false}}
       />
       <Stack.Screen

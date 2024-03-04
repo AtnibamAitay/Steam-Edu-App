@@ -6,6 +6,7 @@ import UserInfo from '../components/discover/UserInfo';
 import AdaptiveCourse from '../components/discover/AdaptiveCourse';
 import BottomNavigation from '../components/common/BottomNavigation';
 import {useNavigation} from '@react-navigation/native';
+import CourseDetail from '../screens/CourseDetail'; // 引入CourseDetail组件
 
 const Discover = () => {
   const [courses, setCourses] = useState([]);
