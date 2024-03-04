@@ -3,6 +3,8 @@ import {ScrollView, StyleSheet, View} from 'react-native';
 import {api} from '../../config';
 import CoverCarousel from '../components/discover/courseDetail/CoverCarousel';
 import StockAndCountdown from '../components/discover/courseDetail/StockAndCountdown';
+import CourseNameCard from '../components/discover/courseDetail/CourseNameCard';
+import ScoreAndSales from '../components/discover/courseDetail/ScoreAndSales';
 
 const CourseDetail = ({route}) => {
   const [courseDetail, setCourseDetail] = useState(null);
@@ -36,7 +38,6 @@ const CourseDetail = ({route}) => {
       {courseDetail && (
         <View style={styles.courseInfoContainer}>
           {/* 其他课程详细信息展示... */}
-
           {/* 显示价格、剩余名额及倒计时组件 */}
           <StockAndCountdown
             price={courseDetail.price}
@@ -44,6 +45,16 @@ const CourseDetail = ({route}) => {
             totalStock={courseDetail.totalStock}
             startTime={courseDetail.startTime}
           />
+          {/* 显示课程名称卡片 */}
+          <CourseNameCard name={courseDetail.name} />
+          {/* 显示评分与销量统计组件 */}
+          {courseDetail && (
+            <ScoreAndSales
+              totalComprehensiveScore={courseDetail.totalComprehensiveScore}
+              salesVolume={courseDetail.salesVolume}
+              totalClasses={courseDetail.totalClasses}
+            />
+          )}
         </View>
       )}
     </ScrollView>
