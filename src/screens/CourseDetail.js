@@ -2,11 +2,12 @@ import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {api} from '../../config';
 import CoverCarousel from '../components/discover/courseDetail/CoverCarousel';
+import StockAndCountdown from '../components/discover/courseDetail/StockAndCountdown';
 
 const CourseDetail = ({route}) => {
   const [courseDetail, setCourseDetail] = useState(null);
   const courseId = route.params.courseId;
-  const [courseCover, setCourseCover] = useState(null); // 新增：用于存储轮播图数据
+  const [courseCover, setCourseCover] = useState(null);
 
   useEffect(() => {
     const fetchCourseDetail = async () => {
@@ -31,6 +32,20 @@ const CourseDetail = ({route}) => {
           <CoverCarousel covers={courseCover} />
         </View>
       )}
+
+      {courseDetail && (
+        <View style={styles.courseInfoContainer}>
+          {/* 其他课程详细信息展示... */}
+
+          {/* 显示价格、剩余名额及倒计时组件 */}
+          <StockAndCountdown
+            price={courseDetail.price}
+            stock={courseDetail.stock}
+            totalStock={courseDetail.totalStock}
+            startTime={courseDetail.startTime}
+          />
+        </View>
+      )}
     </ScrollView>
   );
 };
@@ -43,26 +58,9 @@ const styles = StyleSheet.create({
   carouselContainer: {
     height: 200,
   },
-  courseTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 16,
-  },
-  coursePrice: {
-    fontSize: 18,
-    color: '#000000',
-    fontWeight: 'bold',
-    marginBottom: 8,
-  },
-  courseStock: {
-    fontSize: 16,
-    color: '#666666',
-    marginBottom: 8,
-  },
-  courseStartTime: {
-    fontSize: 16,
-    color: '#666666',
-    marginBottom: 16,
+  courseInfoContainer: {
+    paddingHorizontal: 16,
+    paddingTop: 16,
   },
 });
 
