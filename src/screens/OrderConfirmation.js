@@ -1,12 +1,48 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import {api} from '../../config';
 import OrderCourseCard from '../components/discover/courseDetail/OrderConfirmation/OrderCourseCard';
 import StudentInfoCard from '../components/discover/courseDetail/OrderConfirmation/OrderStudentInfoCard';
+import PriceSummaryCard from '../components/discover/courseDetail/OrderConfirmation/PriceSummaryCard';
+import BottomBar from '../components/discover/courseDetail/OrderConfirmation/BottomBar';
+
+const PaymentButton = ({title, onPress, selected, color}) => {
+  const [active, setActive] = useState(selected);
+
+  return (
+    <TouchableOpacity
+      style={[
+        styles.paymentButton,
+        {
+          borderColor: active ? color : '#ddd',
+          backgroundColor: active ? color : '#fff',
+        },
+      ]}
+      onPress={() => {
+        setActive(!active);
+        onPress();
+      }}>
+      <Text style={[styles.buttonText, {color: active ? '#fff' : '#333'}]}>
+        {title}
+      </Text>
+    </TouchableOpacity>
+  );
+};
 
 const OrderConfirmation = ({route}) => {
   const [orderInfo, setOrderInfo] = useState(null);
   const courseId = route.params.courseId;
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
+
+  const handlePaymentSelection = paymentMethod => {
+    setSelectedPaymentMethod(paymentMethod);
+  };
 
   useEffect(() => {
     const fetchOrderInfo = async () => {
@@ -25,20 +61,18 @@ const OrderConfirmation = ({route}) => {
   }, [courseId]);
 
   return (
-    <ScrollView style={styles.container}>
-      {/* 学生信息 */}
-      {orderInfo && (
-        <StudentInfoCard
-          studentName={orderInfo.studentInfo.studentName}
-          contact={orderInfo.studentInfo.contact}
-        />
-      )}
+    <>
+      <ScrollView style={styles.container}>
+        {/* 学生信息 */}
+        {orderInfo && (
+          <StudentInfoCard
+            studentName={orderInfo.studentInfo.studentName}
+            contact={orderInfo.studentInfo.contact}
+          />
+        )}
 
-      {/* 课程列表 */}
-      {orderInfo?.courseInfo?.map(
-        (
-          course, // 修改为 orderInfo?.courseInfo
-        ) => (
+        {/* 课程列表 */}
+        {orderInfo?.courseInfo?.map(course => (
           <OrderCourseCard
             key={course.courseId}
             courseId={course.courseId}
@@ -47,9 +81,37 @@ const OrderConfirmation = ({route}) => {
             schoolTime={course.schoolTime}
             price={course.price}
           />
-        ),
-      )}
-    </ScrollView>
+        ))}
+
+        {/* 价格明细 */}
+        {orderInfo && <PriceSummaryCard orderInfo={orderInfo} />}
+
+        {/* 支付方式 */}
+        <View style={{paddingHorizontal: 16, paddingVertical: 8}}>
+          <Text style={{fontSize: 16}}>支付方式</Text>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}>
+            <PaymentButton
+              title="支付宝支付"
+              onPress={() => handlePaymentSelection('alipay')}
+              selected={selectedPaymentMethod === 'alipay'}
+              color="#00bfff"
+            />
+            <PaymentButton
+              title="微信支付"
+              onPress={() => handlePaymentSelection('wechat')}
+              selected={selectedPaymentMethod === 'wechat'}
+              color="#00c853"
+            />
+          </View>
+        </View>
+      </ScrollView>
+      <BottomBar />
+    </>
   );
 };
 
@@ -57,6 +119,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F8F9FD',
+    paddingHorizontal: 16,
   },
   studentInfoContainer: {
     paddingHorizontal: 16,
@@ -71,6 +134,18 @@ const styles = StyleSheet.create({
   contact: {
     marginTop: 4,
     fontSize: 16,
+  },
+  paymentButton: {
+    flex: 1,
+    borderWidth: 1,
+    borderRadius: 4,
+    padding: 12,
+    marginHorizontal: 8,
+    alignItems: 'center',
+  },
+  buttonText: {
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 

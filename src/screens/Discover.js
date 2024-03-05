@@ -1,5 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {ScrollView, StyleSheet, View, SafeAreaView} from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  View,
+  SafeAreaView,
+  RefreshControl,
+} from 'react-native';
 import {api} from '../../config';
 import CourseCard from '../components/discover/CourseCard';
 import UserInfo from '../components/discover/UserInfo';
@@ -11,47 +17,63 @@ const Discover = () => {
   const [courses, setCourses] = useState([]);
   const [userInfo, setUserInfo] = useState(null);
   const [adaptiveCourses, setAdaptiveCourses] = useState([]);
+  const [isRefreshing, setIsRefreshing] = useState(false);
   const routeName = 'Discover';
   const navigation = useNavigation();
-  useEffect(() => {
-    const fetchCourses = async () => {
-      try {
-        const response1 = await api.get('/spu/nearby', {
-          params: {lat: 1.0, lng: 1.0},
+
+  // 将三个请求函数移到外部
+  const fetchCourses = async () => {
+    try {
+      const response1 = await api.get('/spu/nearby', {
+        params: {lat: 1.0, lng: 1.0},
+      });
+      setCourses(response1.data.data);
+    } catch (error) {
+      console.error('Failed to fetch courses:', error);
+    }
+  };
+
+  const fetchUserInfo = async () => {
+    try {
+      const response2 = await api.get('/user/info');
+      if (response2.data.code === 200) {
+        setUserInfo({
+          userAvatar: response2.data.data.userAvatar,
+          userName: response2.data.data.userName,
+          userLocationRegion: `您当前所在位置：${response2.data.data.userLocationRegion}`,
         });
-        setCourses(response1.data.data);
-      } catch (error) {
-        console.error('Failed to fetch courses:', error);
       }
-    };
+    } catch (error) {
+      console.error('Failed to fetch user info:', error);
+    }
+  };
 
-    // 获取用户信息的请求
-    const fetchUserInfo = async () => {
-      try {
-        const response2 = await api.get('/user/info');
-        if (response2.data.code === 200) {
-          setUserInfo({
-            userAvatar: response2.data.data.userAvatar,
-            userName: response2.data.data.userName,
-            userLocationRegion: `您当前所在位置：${response2.data.data.userLocationRegion}`,
-          });
-        }
-      } catch (error) {
-        console.error('Failed to fetch user info:', error);
+  const fetchAdaptiveCourses = async () => {
+    try {
+      const response3 = await api.get('/spu');
+      if (response3.data.code === 200) {
+        setAdaptiveCourses(response3.data.data);
       }
-    };
+    } catch (error) {
+      console.error('Failed to fetch adaptive courses:', error);
+    }
+  };
 
-    const fetchAdaptiveCourses = async () => {
-      try {
-        const response3 = await api.get('/spu');
-        if (response3.data.code === 200) {
-          setAdaptiveCourses(response3.data.data);
-        }
-      } catch (error) {
-        console.error('Failed to fetch adaptive courses:', error);
-      }
-    };
+  // 下拉刷新的回调函数
+  const handleRefresh = async () => {
+    setIsRefreshing(true);
+    try {
+      await fetchCourses();
+      await fetchUserInfo();
+      await fetchAdaptiveCourses();
+    } catch (error) {
+      console.error('Failed to refresh data:', error);
+    } finally {
+      setIsRefreshing(false);
+    }
+  };
 
+  useEffect(() => {
     fetchCourses();
     fetchUserInfo();
     fetchAdaptiveCourses();
@@ -59,7 +81,11 @@ const Discover = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.content}>
+      <ScrollView
+        contentContainerStyle={styles.content}
+        refreshControl={
+          <RefreshControl refreshing={isRefreshing} onRefresh={handleRefresh} />
+        }>
         {userInfo && (
           <View style={styles.componentWrapper}>
             <UserInfo userInfo={userInfo} />
