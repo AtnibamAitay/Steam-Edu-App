@@ -65,22 +65,26 @@ const OrderConfirmation = ({route}) => {
       <ScrollView style={styles.container}>
         {/* 学生信息 */}
         {orderInfo && (
-          <StudentInfoCard
-            studentName={orderInfo.studentInfo.studentName}
-            contact={orderInfo.studentInfo.contact}
-          />
+          <View style={styles.sectionContainer}>
+            <StudentInfoCard
+              studentName={orderInfo.studentInfo.studentName}
+              contact={orderInfo.studentInfo.contact}
+            />
+          </View>
         )}
 
         {/* 课程列表 */}
         {orderInfo?.courseInfo?.map(course => (
-          <OrderCourseCard
-            key={course.courseId}
-            courseId={course.courseId}
-            courseType={course.courseType}
-            name={course.name}
-            schoolTime={course.schoolTime}
-            price={course.price}
-          />
+          <View style={styles.sectionContainer}>
+            <OrderCourseCard
+              key={course.courseId}
+              courseId={course.courseId}
+              courseType={course.courseType}
+              name={course.name}
+              schoolTime={course.schoolTime}
+              price={course.price}
+            />
+          </View>
         ))}
 
         {/* 价格明细 */}
@@ -88,7 +92,7 @@ const OrderConfirmation = ({route}) => {
 
         {/* 支付方式 */}
         <View style={{paddingHorizontal: 16, paddingVertical: 8}}>
-          <Text style={{fontSize: 16}}>支付方式</Text>
+          <Text style={styles.paymentTitle}>支付方式</Text>
           <View
             style={{
               flexDirection: 'row',
@@ -121,6 +125,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#F8F9FD',
     paddingHorizontal: 16,
   },
+  sectionContainer: {
+    paddingVertical: 8,
+  },
   studentInfoContainer: {
     paddingHorizontal: 16,
     paddingVertical: 16,
@@ -134,6 +141,10 @@ const styles = StyleSheet.create({
   contact: {
     marginTop: 4,
     fontSize: 16,
+  },
+  paymentTitle: {
+    fontSize: 16,
+    color: '#000',
   },
   paymentButton: {
     flex: 1,

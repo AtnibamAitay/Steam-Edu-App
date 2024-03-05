@@ -39,13 +39,13 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 16,
     paddingVertical: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
+    backgroundColor: '#ffffff',
+    borderRadius: 16,
   },
   title: {
     fontSize: 18,
-    fontWeight: 'bold',
     marginBottom: 8,
+    color: '#000',
   },
   row: {
     flexDirection: 'row',
@@ -64,20 +64,21 @@ const styles = StyleSheet.create({
   subTitle: {
     fontSize: 16,
     fontWeight: '500',
+    color: '#000',
   },
   value: {
     fontSize: 16,
-    color: '#333',
+    color: '#000',
   },
   totalLabel: {
     fontSize: 16,
     fontWeight: '500',
-    color: '#333',
+    color: '#000',
   },
   totalValue: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#000',
   },
 });
 
