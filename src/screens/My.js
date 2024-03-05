@@ -24,6 +24,9 @@ const My = () => {
   const buttonBackgroundColor = isDarkMode ? '#262626' : '#FFFFFF';
   const buttonTextBackgroundColor = isDarkMode ? '#FFFFFF' : '#000000';
 
+  const handleStudentInfoPress = () => {
+    navigation.navigate('StudentInfoScreen');
+  };
   const handleSettingsPress = () => {
     navigation.navigate('Settings');
   };
@@ -81,7 +84,8 @@ const My = () => {
           styles.button,
           {backgroundColor: buttonBackgroundColor},
           styles.specialMarginButtonGroup, // 需要零间距的按钮组样式
-        ]}>
+        ]}
+        onPress={handleStudentInfoPress}>
         <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
           我的信息
         </Text>

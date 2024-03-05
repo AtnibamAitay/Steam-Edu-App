@@ -45,7 +45,7 @@ const SettingsScreen = () => {
   const handleLogout = async () => {
     try {
       // 向后端发送退出登录请求
-      await api.post('/users/logout');
+      await api.post('/auth/logout');
 
       // 清除本地存储中的token
       await AsyncStorage.removeItem('Authorization');
