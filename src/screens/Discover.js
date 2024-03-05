@@ -5,6 +5,7 @@ import {
   View,
   SafeAreaView,
   RefreshControl,
+  Text,
 } from 'react-native';
 import {api} from '../../config';
 import CourseCard from '../components/discover/CourseCard';
@@ -87,10 +88,16 @@ const Discover = () => {
           <RefreshControl refreshing={isRefreshing} onRefresh={handleRefresh} />
         }>
         {userInfo && (
-          <View style={styles.componentWrapper}>
+          <View style={styles.userInfoContainer}>
             <UserInfo userInfo={userInfo} />
           </View>
         )}
+
+        <View style={styles.titleWrapper}>
+          <Text style={[styles.textTitle, {fontFamily: 'NotoSerifSC-Regular'}]}>
+            个性化课程
+          </Text>
+        </View>
 
         <View style={styles.componentWrapper}>
           <View style={styles.horizontalScrollContainer}>
@@ -111,7 +118,12 @@ const Discover = () => {
           </View>
         </View>
 
-        {/* 课程卡片列表 */}
+        <View style={styles.titleWrapper}>
+          <Text style={[styles.textTitle, {fontFamily: 'NotoSerifSC-Regular'}]}>
+            附近的课程
+          </Text>
+        </View>
+
         <View style={styles.componentWrapper}>
           {courses &&
             courses.map(course => (
@@ -136,6 +148,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingBottom: 50,
   },
+  userInfoContainer: {
+    width: '100%',
+    paddingTop: 70,
+  },
   componentWrapper: {
     width: '100%',
   },
@@ -143,8 +159,16 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     width: '100%',
   },
-
-  // 添加一个新的样式用于 BottomNavigation
+  titleWrapper: {
+    paddingVertical: 16,
+    alignSelf: 'flex-start',
+  },
+  textTitle: {
+    fontSize: 16,
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
+    color: '#333',
+  },
   bottomNavigation: {
     position: 'absolute',
     left: 0,

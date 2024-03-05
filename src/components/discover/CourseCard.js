@@ -76,8 +76,9 @@ const styles = StyleSheet.create({
   },
   courseTypeText: {
     color: '#FFFFFF',
-    fontSize: 12,
-    fontWeight: 'bold',
+    fontSize: 11,
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
   },
   courseInfoRow: {
     flexDirection: 'row',
@@ -87,17 +88,19 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     color: '#000000',
     fontSize: 18,
-    fontWeight: 'bold',
   },
   courseSubInfo: {
     marginTop: 4,
     fontSize: 14,
     color: '#666666',
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
   },
   courseTitle: {
     color: '#000000',
     fontSize: 18,
-    fontWeight: 'bold',
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
   },
   courseInfo: {
     fontSize: 14,
@@ -114,24 +117,26 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   avatar: {
-    width: 30,
-    height: 30,
+    width: 25,
+    height: 25,
     borderRadius: 15,
   },
   teacherName: {
     color: '#000000',
-    marginLeft: 4,
+    marginLeft: 8,
     fontSize: 14,
+    fontFamily: 'NotoSerifSC-Regular',
   },
   priceTag: {
     position: 'absolute',
-    top: 8,
+    top: 16,
     right: 8,
   },
   priceText: {
     color: '#000000',
     fontSize: 16,
-    fontWeight: 'bold',
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
   },
 });
 
