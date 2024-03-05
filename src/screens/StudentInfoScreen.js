@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 75,
-    marginTop: 30,
+    marginTop: 40,
   },
   title: {
     fontSize: 24,
@@ -81,15 +81,16 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-end',
     paddingHorizontal: 20,
+    marginBottom: 90,
   },
   label: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: 'bold',
     marginBottom: 5,
   },
   value: {
-    fontSize: 16,
-    marginBottom: 10,
+    fontSize: 18,
+    marginBottom: 20,
   },
 });
 

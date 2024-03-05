@@ -60,11 +60,11 @@ const StockAndCountdown = ({price, stock, totalStock, startTime}) => {
       {/* 左侧列 */}
       <View style={styles.leftColumn}>
         {/* 价格 */}
-        <Text style={styles.price}>{`价格：${price}元`}</Text>
+        <Text style={styles.price}>{`￥${price}`}</Text>
 
         {/* 剩余名额 */}
         <Text style={styles.stock}>
-          {'剩余名额：'}
+          {'剩余名额 '}
           {stock}/{totalStock}
         </Text>
 
@@ -100,17 +100,18 @@ const StockAndCountdown = ({price, stock, totalStock, startTime}) => {
 // 更新样式表以支持两列布局
 const styles = StyleSheet.create({
   container: {
-    padding: 16,
-    backgroundColor: '#007AFF',
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   leftColumn: {
     flex: 1,
-    marginRight: 16,
+    backgroundColor: '#3656FC',
+    padding: 16,
   },
   rightColumn: {
     flex: 1,
+    backgroundColor: '#0521CD',
+    padding: 16,
   },
   price: {
     color: '#fff',
@@ -143,12 +144,20 @@ const styles = StyleSheet.create({
   },
   progressBarContainer: {
     height: 8,
+    borderRadius: 4,
     overflow: 'hidden',
     backgroundColor: '#051796',
     marginVertical: 8,
   },
   progressBar: {
     height: '100%',
+  },
+  circularProgressBar: {
+    height: '100%',
+    width: '120%',
+    borderRadius: 4,
+    overflow: 'hidden',
+    alignItems: 'center',
   },
 });
 

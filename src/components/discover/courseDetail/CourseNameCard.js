@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 8,
+    color: '#000000',
   },
   separator: {
     height: 1,
