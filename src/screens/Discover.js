@@ -6,7 +6,6 @@ import UserInfo from '../components/discover/UserInfo';
 import AdaptiveCourse from '../components/discover/AdaptiveCourse';
 import BottomNavigation from '../components/common/BottomNavigation';
 import {useNavigation} from '@react-navigation/native';
-import CourseDetail from '../screens/CourseDetail'; // 引入CourseDetail组件
 
 const Discover = () => {
   const [courses, setCourses] = useState([]);
@@ -26,7 +25,7 @@ const Discover = () => {
       }
     };
 
-    // 新增：获取用户信息的请求
+    // 获取用户信息的请求
     const fetchUserInfo = async () => {
       try {
         const response2 = await api.get('/user/info');
@@ -67,7 +66,6 @@ const Discover = () => {
           </View>
         )}
 
-        {/* 将 AdaptiveCourses 移动到这里 */}
         <View style={styles.componentWrapper}>
           <View style={styles.horizontalScrollContainer}>
             <ScrollView

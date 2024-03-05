@@ -29,15 +29,25 @@ const CourseCard = ({
 
   return (
     <TouchableOpacity style={styles.cardContainer} onPress={handleCoursePress}>
+      <View style={styles.courseInfoRow}>
+        <View style={styles.courseTypeWrapper}>
+          <Text style={styles.courseTypeText}>
+            {getCourseTypeText(courseType)}
+          </Text>
+        </View>
+        <Text style={[styles.courseTitle, styles.courseTitleWithType]}>
+          {`${name}`}
+        </Text>
+      </View>
+
       <View style={styles.priceTag}>
         <Text style={styles.priceText}>￥{price}</Text>
       </View>
 
-      <Text style={styles.courseTitle}>{`${getCourseTypeText(
-        courseType,
-      )} ${name}`}</Text>
       <Text
-        style={styles.courseInfo}>{`${distanceFromUser} · ${schoolTime}`}</Text>
+        style={
+          styles.courseSubInfo
+        }>{`${distanceFromUser} · ${schoolTime}`}</Text>
       <View style={styles.teacherList}>
         {teacher.map((t, index) => (
           <View key={`teacher-${index}`} style={styles.teacherItem}>
@@ -56,6 +66,33 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     padding: 16,
     marginBottom: 12,
+  },
+  courseTypeWrapper: {
+    backgroundColor: '#000000',
+    borderRadius: 8,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    alignSelf: 'flex-start',
+  },
+  courseTypeText: {
+    color: '#FFFFFF',
+    fontSize: 12,
+    fontWeight: 'bold',
+  },
+  courseInfoRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  courseTitleWithType: {
+    marginLeft: 8,
+    color: '#000000',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  courseSubInfo: {
+    marginTop: 4,
+    fontSize: 14,
+    color: '#666666',
   },
   courseTitle: {
     color: '#000000',

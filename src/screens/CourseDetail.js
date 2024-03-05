@@ -41,27 +41,27 @@ const CourseDetail = ({route}) => {
 
       {courseDetail && (
         <View style={styles.courseInfoContainer}>
-          {/* 显示价格、剩余名额及倒计时组件 */}
+          {/* 价格、剩余名额及倒计时组件 */}
           <StockAndCountdown
             price={courseDetail.price}
             stock={courseDetail.stock}
             totalStock={courseDetail.totalStock}
             startTime={courseDetail.startTime}
           />
-          {/* 显示课程名称卡片 */}
+          {/* 课程名称卡片 */}
           <CourseNameCard name={courseDetail.name} />
-          {/* 显示评分与销量统计组件 */}
+          {/* 评分与销量统计组件 */}
           <ScoreAndSales
             totalComprehensiveScore={courseDetail.totalComprehensiveScore}
             salesVolume={courseDetail.salesVolume}
             totalClasses={courseDetail.totalClasses}
           />
-          {/* 显示教师列表组件 */}
+          {/* 教师列表组件 */}
           <View style={styles.courseInfoContainer}>
             <TeacherList teacher={courseDetail.teacher} />
           </View>
           <CourseDetailComments spuId={courseDetail.courseId} />
-          {/* 显示商户信息卡片 */}
+          {/* 商户信息卡片 */}
           <MerchantInfoCard merchant={courseDetail.merchant} />
           {/* 课程描述 */}
           <CourseDescription images={courseDetail.detail} />
