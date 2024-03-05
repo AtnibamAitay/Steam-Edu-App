@@ -14,6 +14,7 @@ import CouponListScreen from '../screens/CouponListScreen';
 import CourseCartScreen from '../screens/CourseCartScreen';
 import CourseDetail from '../screens/CourseDetail';
 import StudentInfoScreen from '../screens/StudentInfoScreen';
+import OrderConfirmation from '../screens/OrderConfirmation';
 
 const Stack = createStackNavigator();
 
@@ -96,6 +97,35 @@ export default function AppNavigator() {
         name="Discover"
         component={Discover}
         options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="OrderConfirmation"
+        component={OrderConfirmation}
+        options={({navigation}) => ({
+          title: '确认订单',
+          headerStyle: {
+            backgroundColor: scheme === 'dark' ? '#1C1C1C' : '#F2F2F2',
+            shadowOpacity: 0, // iOS
+            shadowOffset: {height: 0, width: 0}, // iOS
+            shadowRadius: 0, // iOS
+            elevation: 0, // Android
+          },
+          headerTintColor: scheme === 'dark' ? '#FFFFFF' : 'black',
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={{marginLeft: 12}}>
+              <Image
+                source={require('../../assets/icon/common/left.png')}
+                style={{
+                  width: 22,
+                  height: 22,
+                  tintColor: scheme === 'dark' ? '#FFFFFF' : 'black',
+                }}
+              />
+            </TouchableOpacity>
+          ),
+        })}
       />
       <Stack.Screen
         name="CourseDetail"
