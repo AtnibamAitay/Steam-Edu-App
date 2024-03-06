@@ -30,6 +30,9 @@ const My = () => {
   const handleSettingsPress = () => {
     navigation.navigate('Settings');
   };
+  const handleCourseHistoryPress = () => {
+    navigation.navigate('CourseHistory');
+  };
   const handleCouponPress = () => {
     navigation.navigate('CouponListScreen');
   };
@@ -106,21 +109,22 @@ const My = () => {
           styles.button,
           {backgroundColor: buttonBackgroundColor},
           styles.specialMarginButtonGroup,
-        ]}>
+        ]}
+        onPress={handleCourseHistoryPress}>
         <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
           课程历史
         </Text>
       </TouchableOpacity>
-      <TouchableOpacity
-        style={[
-          styles.button,
-          {backgroundColor: buttonBackgroundColor},
-          styles.specialMarginButtonGroup,
-        ]}>
-        <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
-          收藏
-        </Text>
-      </TouchableOpacity>
+      {/*<TouchableOpacity*/}
+      {/*  style={[*/}
+      {/*    styles.button,*/}
+      {/*    {backgroundColor: buttonBackgroundColor},*/}
+      {/*    styles.specialMarginButtonGroup,*/}
+      {/*  ]}>*/}
+      {/*  <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>*/}
+      {/*    收藏*/}
+      {/*  </Text>*/}
+      {/*</TouchableOpacity>*/}
       <TouchableOpacity
         style={[
           styles.button,
