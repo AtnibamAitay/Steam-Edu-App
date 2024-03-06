@@ -33,6 +33,9 @@ const My = () => {
   const handleCourseHistoryPress = () => {
     navigation.navigate('CourseHistory');
   };
+  const handleFavoritePress = () => {
+    navigation.navigate('Favorite');
+  };
   const handleCouponPress = () => {
     navigation.navigate('CouponListScreen');
   };
@@ -115,16 +118,17 @@ const My = () => {
           课程历史
         </Text>
       </TouchableOpacity>
-      {/*<TouchableOpacity*/}
-      {/*  style={[*/}
-      {/*    styles.button,*/}
-      {/*    {backgroundColor: buttonBackgroundColor},*/}
-      {/*    styles.specialMarginButtonGroup,*/}
-      {/*  ]}>*/}
-      {/*  <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>*/}
-      {/*    收藏*/}
-      {/*  </Text>*/}
-      {/*</TouchableOpacity>*/}
+      <TouchableOpacity
+        style={[
+          styles.button,
+          {backgroundColor: buttonBackgroundColor},
+          styles.specialMarginButtonGroup,
+        ]}
+        onPress={handleFavoritePress}>
+        <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
+          收藏
+        </Text>
+      </TouchableOpacity>
       <TouchableOpacity
         style={[
           styles.button,

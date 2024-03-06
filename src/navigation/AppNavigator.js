@@ -17,6 +17,7 @@ import StudentInfoScreen from '../screens/StudentInfoScreen';
 import OrderConfirmation from '../screens/OrderConfirmation';
 import CourseHistory from '../screens/CourseHistory';
 import HomeTabs from '../screens/HomeTabs';
+import Favorite from '../screens/Favorite';
 
 const Stack = createStackNavigator();
 
@@ -208,6 +209,35 @@ export default function AppNavigator() {
         component={CourseHistory}
         options={({navigation}) => ({
           title: '课程历史',
+          headerStyle: {
+            backgroundColor: scheme === 'dark' ? '#1C1C1C' : '#F2F2F2',
+            shadowOpacity: 0, // iOS
+            shadowOffset: {height: 0, width: 0}, // iOS
+            shadowRadius: 0, // iOS
+            elevation: 0, // Android
+          },
+          headerTintColor: scheme === 'dark' ? '#FFFFFF' : 'black',
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={{marginLeft: 12}}>
+              <Image
+                source={require('../../assets/icon/common/left.png')}
+                style={{
+                  width: 22,
+                  height: 22,
+                  tintColor: scheme === 'dark' ? '#FFFFFF' : 'black',
+                }}
+              />
+            </TouchableOpacity>
+          ),
+        })}
+      />
+      <Stack.Screen
+        name="Favorite"
+        component={Favorite}
+        options={({navigation}) => ({
+          title: '收藏',
           headerStyle: {
             backgroundColor: scheme === 'dark' ? '#1C1C1C' : '#F2F2F2',
             shadowOpacity: 0, // iOS
