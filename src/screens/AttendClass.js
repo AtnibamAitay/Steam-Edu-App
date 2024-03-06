@@ -96,7 +96,6 @@ const AttendClass = () => {
           />
         ))}
       </ScrollView>
-      <BottomNavigation currentRoute="AttendClass" navigation={navigation} />
     </View>
   );
 };

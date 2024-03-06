@@ -16,6 +16,7 @@ import CourseDetail from '../screens/CourseDetail';
 import StudentInfoScreen from '../screens/StudentInfoScreen';
 import OrderConfirmation from '../screens/OrderConfirmation';
 import CourseHistory from '../screens/CourseHistory';
+import HomeTabs from '../screens/HomeTabs';
 
 const Stack = createStackNavigator();
 
@@ -59,7 +60,7 @@ export default function AppNavigator() {
         (currentRouteName === 'AccountInput' ||
           currentRouteName === 'VerificationCode')
       ) {
-        navigation.navigate('Discover');
+        navigation.navigate('HomeTabs');
       }
     };
 
@@ -79,6 +80,11 @@ export default function AppNavigator() {
           fontFamily: 'NotoSerifSC-Regular',
         },
       }}>
+      <Stack.Screen
+        name="HomeTabs"
+        component={HomeTabs}
+        options={{headerShown: false}}
+      />
       <Stack.Screen
         name="AccountInput"
         component={AccountInput}

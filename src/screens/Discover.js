@@ -131,7 +131,6 @@ const Discover = () => {
             ))}
         </View>
       </ScrollView>
-      <BottomNavigation currentRoute={routeName} navigation={navigation} />
     </SafeAreaView>
   );
 };

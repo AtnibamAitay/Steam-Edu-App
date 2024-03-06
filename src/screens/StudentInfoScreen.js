@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Image, Text, StyleSheet} from 'react-native';
+import {View, Image, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {api} from '../../config';
 
 const StudentInfoScreen = () => {
@@ -49,15 +49,39 @@ const StudentInfoScreen = () => {
         <Text style={styles.label}>联系方式</Text>
         <Text style={styles.value}>{contact}</Text>
       </View>
+
+      {/*<TouchableOpacity*/}
+      {/*  style={buttonStyles.button}*/}
+      {/*  onPress={() => console.log('编辑按钮被点击')}>*/}
+      {/*  <Text style={buttonStyles.buttonText}>编辑</Text>*/}
+      {/*</TouchableOpacity>*/}
     </View>
   );
 };
+
+const buttonStyles = StyleSheet.create({
+  button: {
+    width: '100%',
+    height: 40,
+    backgroundColor: '#007AFF',
+    borderRadius: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 20,
+  },
+  buttonText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+});
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    paddingHorizontal: 16,
   },
   avatar: {
     width: 80,
@@ -81,7 +105,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-end',
     paddingHorizontal: 20,
-    marginBottom: 90,
+    marginBottom: 70,
   },
   label: {
     fontSize: 14,

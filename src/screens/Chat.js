@@ -155,9 +155,6 @@ const Chat = () => {
           <Text style={styles.sendButtonText}>发送</Text>
         </TouchableOpacity>
       </View>
-
-      {/* 底部导航栏 */}
-      <BottomNavigation currentRoute="Chat" navigation={navigation} />
     </View>
   );
 };

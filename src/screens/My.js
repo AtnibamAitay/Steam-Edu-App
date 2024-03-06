@@ -152,8 +152,6 @@ const My = () => {
           给我们好评
         </Text>
       </TouchableOpacity>
-
-      <BottomNavigation currentRoute="My" navigation={navigation} />
     </View>
   );
 };

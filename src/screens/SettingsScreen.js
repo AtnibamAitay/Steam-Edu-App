@@ -68,12 +68,12 @@ const SettingsScreen = () => {
 
   return (
     <View style={[styles.container, {backgroundColor}]}>
-      <TouchableOpacity
-        style={[styles.button, {backgroundColor: buttonBackgroundColor}]}>
-        <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
-          账号与安全
-        </Text>
-      </TouchableOpacity>
+      {/*<TouchableOpacity*/}
+      {/*  style={[styles.button, {backgroundColor: buttonBackgroundColor}]}>*/}
+      {/*  <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>*/}
+      {/*    账号与安全*/}
+      {/*  </Text>*/}
+      {/*</TouchableOpacity>*/}
       <TouchableOpacity
         style={[styles.button, {backgroundColor: buttonBackgroundColor}]}
         onPress={checkForUpdates}>
