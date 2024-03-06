@@ -11,14 +11,9 @@ const Chat = () => {
   const gradientStyles = StyleSheet.create({
     background: {
       position: 'absolute',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      justifyContent: 'center',
-      alignItems: 'center',
       zIndex: -1,
       paddingHorizontal: 20,
+      alignItems: 'center',
     },
     gradient: {
       start: {x: 0, y: 0},
@@ -29,11 +24,7 @@ const Chat = () => {
 
   return (
     <View style={styles.container}>
-      <LinearGradient
-        style={gradientStyles.background}
-        colors={gradientStyles.gradient.colors}
-        start={gradientStyles.gradient.start}
-        end={gradientStyles.gradient.end}>
+      <View>
         <View style={styles.imageContainer}>
           <Image
             source={require('../../assets/icon/chat/polarbear.png')}
@@ -58,7 +49,13 @@ const Chat = () => {
         <View style={styles.chatBubbleLeft}>
           <Text style={styles.chatBubbleText}>有什么可以帮助你吗？</Text>
         </View>
+      </View>
 
+      <LinearGradient
+        style={[styles.gradientBackground, gradientStyles.background]}
+        colors={gradientStyles.gradient.colors}
+        start={gradientStyles.gradient.start}
+        end={gradientStyles.gradient.end}>
         {/* 文本输入框 */}
         <TextInput
           style={styles.inputBox}
@@ -67,10 +64,10 @@ const Chat = () => {
           underlineColorAndroid="transparent"
           selectionColor="#007AFF"
         />
-
-        {/* 底部导航栏 */}
-        <BottomNavigation currentRoute="Chat" navigation={navigation} />
       </LinearGradient>
+
+      {/* 底部导航栏 */}
+      <BottomNavigation currentRoute="Chat" navigation={navigation} />
     </View>
   );
 };
@@ -78,8 +75,14 @@ const Chat = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    paddingHorizontal: 20,
+  },
+  gradientBackground: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
   imageContainer: {
     alignItems: 'center',
@@ -92,6 +95,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderColor: '#ffffff',
     borderWidth: 2,
+    marginTop: 70,
   },
   title: {
     fontSize: 21,
