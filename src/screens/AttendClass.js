@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {ScrollView, StyleSheet, View, Text} from 'react-native';
 import BottomNavigation from '../components/common/BottomNavigation';
 import {useNavigation} from '@react-navigation/native';
 import UserAdaptiveCourse from '../components/attendClass/UserAdaptiveCourse';
@@ -57,35 +57,45 @@ const AttendClass = () => {
 
   return (
     <View style={styles.container}>
-      {/* 渲染用户自适应课程列表 */}
-      {groupedAdaptiveCourses.map((courseGroup, indexGroup) => (
-        <View
-          key={`adaptive-course-group-${indexGroup}`}
-          style={styles.courseGroup}>
-          {courseGroup.map(({courseId, name, userName}, index) => (
-            <UserAdaptiveCourse
-              key={`adaptive-course-${index}`}
-              courseId={courseId}
-              name={name}
-              userName={userName}
-            />
-          ))}
+      <ScrollView>
+        <View style={styles.titleWrapper}>
+          <Text style={[styles.myClassTitleText]}>我的课程</Text>
         </View>
-      ))}
+        <View style={styles.titleWrapper}>
+          <Text style={[styles.textTitle]}>个性化课程</Text>
+        </View>
+        {/* 渲染用户自适应课程列表 */}
+        {groupedAdaptiveCourses.map((courseGroup, indexGroup) => (
+          <View
+            key={`adaptive-course-group-${indexGroup}`}
+            style={styles.courseGroup}>
+            {courseGroup.map(({courseId, name, userName}, index) => (
+              <UserAdaptiveCourse
+                key={`adaptive-course-${index}`}
+                courseId={courseId}
+                name={name}
+                userName={userName}
+              />
+            ))}
+          </View>
+        ))}
 
-      {/* 渲染用户线下课、线上课课程列表 */}
-      {offlineOnlineCourses.map((course, index) => (
-        <UserCourseCard
-          key={`course-${index}`}
-          courseType={course.courseType}
-          name={course.name}
-          schoolTime={course.schoolTime}
-          teacher={course.teacher}
-          location={course.location}
-          classDuration={course.classDuration}
-        />
-      ))}
-
+        <View style={styles.titleWrapper}>
+          <Text style={[styles.textTitle]}>正在进行的线下课</Text>
+        </View>
+        {/* 渲染用户线下课、线上课课程列表 */}
+        {offlineOnlineCourses.map((course, index) => (
+          <UserCourseCard
+            key={`course-${index}`}
+            courseType={course.courseType}
+            name={course.name}
+            schoolTime={course.schoolTime}
+            teacher={course.teacher}
+            location={course.location}
+            classDuration={course.classDuration}
+          />
+        ))}
+      </ScrollView>
       <BottomNavigation currentRoute="AttendClass" navigation={navigation} />
     </View>
   );
@@ -98,6 +108,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F8F9FD',
     paddingBottom: 56,
+    paddingHorizontal: 16,
   },
   courseGroup: {
     flexDirection: 'row',
@@ -109,6 +120,23 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     fontFamily: 'NotoSerifSC-Regular',
+  },
+  titleWrapper: {
+    paddingVertical: 16,
+    alignSelf: 'flex-start',
+  },
+  textTitle: {
+    fontSize: 16,
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
+    color: '#333',
+  },
+  myClassTitleText: {
+    fontSize: 27,
+    fontFamily: 'NotoSerifSC-Bold',
+    includeFontPadding: false,
+    color: '#333',
+    paddingTop: 80,
   },
 });
 

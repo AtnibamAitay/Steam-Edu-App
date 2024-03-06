@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     padding: 16,
     margin: 6,
     height: 170,
-    width: 110,
+    width: 108,
   },
   courseName: {
     fontSize: 20,
