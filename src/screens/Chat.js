@@ -1,40 +1,127 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, Image, TextInput} from 'react-native';
 import BottomNavigation from '../components/common/BottomNavigation';
 import {useNavigation} from '@react-navigation/native';
+import LinearGradient from 'react-native-linear-gradient';
 
 const Chat = () => {
   const navigation = useNavigation();
-  const [message, setMessage] = useState('Hello World!');
 
-  useEffect(() => {
-    // 这里可以编写检查登录状态的逻辑，如果未登录则跳转至登录页
-    // 暂时不涉及请求，因此此处为空
-  }, []);
+  useEffect(() => {}, []);
+  const gradientStyles = StyleSheet.create({
+    background: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      justifyContent: 'center',
+      alignItems: 'center',
+      zIndex: -1,
+    },
+    gradient: {
+      start: {x: 0, y: 0},
+      end: {x: 1, y: 1},
+      colors: ['#FEF5FF', '#DFE4EE', '#D6E4FF'],
+    },
+  });
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{message}</Text>
+      <LinearGradient
+        style={gradientStyles.background}
+        colors={gradientStyles.gradient.colors}
+        start={gradientStyles.gradient.start}
+        end={gradientStyles.gradient.end}>
+        <View style={styles.imageContainer}>
+          <Image
+            source={require('../../assets/icon/chat/polarbear.png')}
+            style={[styles.circleImage, {resizeMode: 'contain'}]}
+          />
+        </View>
 
-      {/* 引入底部导航栏 */}
-      <BottomNavigation currentRoute="Chat" navigation={navigation} />
+        <Text style={styles.title}>欢迎使用万象课堂</Text>
+
+        <Text style={styles.description}>
+          基于人工智能与苏格拉底哲学理论的强大教
+        </Text>
+
+        <Text style={styles.description}>
+          师，能够解答疑问、题目，引导学习。
+        </Text>
+
+        {/* 水平分隔线 */}
+        <View style={styles.separator} />
+
+        {/* 文本输入框 */}
+        <TextInput
+          style={styles.inputBox}
+          placeholder="在此输入..."
+          placeholderTextColor="#007AFF"
+          underlineColorAndroid="transparent"
+          selectionColor="#007AFF"
+        />
+
+        {/* 底部导航栏 */}
+        <BottomNavigation currentRoute="Chat" navigation={navigation} />
+      </LinearGradient>
     </View>
   );
 };
 
-// 样式调整以适应底部导航栏
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
-    paddingBottom: 56, // 确保内容不被底部导航栏遮挡
+    paddingBottom: 56,
   },
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
+  imageContainer: {
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  circleImage: {
+    width: 70,
+    height: 70,
+    borderRadius: 40,
+    overflow: 'hidden',
+    borderColor: '#ffffff',
+    borderWidth: 2,
+  },
+  title: {
+    fontSize: 21,
+    fontFamily: 'NotoSerifSC-Bold',
+    textAlign: 'center',
+    marginVertical: 10,
+    color: '#000000',
+  },
+  description: {
+    fontSize: 17,
+    textAlign: 'center',
+    marginVertical: 2,
     fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
+  },
+  separator: {
+    width: '90%',
+    height: 1,
+    backgroundColor: '#ccc',
+    marginHorizontal: '5%',
+    marginTop: 20,
+    marginBottom: 20,
+  },
+  inputBox: {
+    position: 'absolute',
+    bottom: 70,
+    height: 48,
+    width: '90%',
+    paddingHorizontal: 16,
+    borderWidth: 1,
+    borderColor: '#007AFF',
+    backgroundColor: '#fff',
+    zIndex: 1,
+    borderRadius: 24,
   },
 });
 
