@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 
 const UserCourseCard = ({
   courseType,
@@ -8,6 +8,7 @@ const UserCourseCard = ({
   teacher,
   location,
   classDuration,
+  onPress,
 }) => {
   const getCourseTypeText = type => {
     switch (type) {
@@ -21,35 +22,37 @@ const UserCourseCard = ({
   };
 
   return (
-    <View style={styles.cardContainer}>
-      <Text style={styles.courseTitle}>{`${getCourseTypeText(
-        courseType,
-      )} ${name}`}</Text>
-      <Text style={styles.courseInfo}>{`${schoolTime}`}</Text>
-      <View style={styles.teacherList}>
-        {teacher.map((t, index) => (
-          <View key={`teacher-${index}`} style={styles.teacherItem}>
-            <Image source={{uri: t.userAvatar}} style={styles.avatar} />
-            <Text style={styles.teacherName}>{t.userName}</Text>
+    <TouchableOpacity onPress={onPress}>
+      <View style={styles.cardContainer}>
+        <Text style={styles.courseTitle}>{`${getCourseTypeText(
+          courseType,
+        )} ${name}`}</Text>
+        <Text style={styles.courseInfo}>{`${schoolTime}`}</Text>
+        <View style={styles.teacherList}>
+          {teacher.map((t, index) => (
+            <View key={`teacher-${index}`} style={styles.teacherItem}>
+              <Image source={{uri: t.userAvatar}} style={styles.avatar} />
+              <Text style={styles.teacherName}>{t.userName}</Text>
+            </View>
+          ))}
+        </View>
+        <View style={styles.infoSection}>
+          <View style={[styles.infoRow, {alignItems: 'flex-start'}]}>
+            <Text style={[styles.courseInfo, {textAlign: 'right'}]}>
+              上课地点：
+            </Text>
+            <Text style={styles.courseInfo}>{location}</Text>
           </View>
-        ))}
-      </View>
-      <View style={styles.infoSection}>
-        <View style={[styles.infoRow, {alignItems: 'flex-start'}]}>
-          <Text style={[styles.courseInfo, {textAlign: 'right'}]}>
-            上课地点：
-          </Text>
-          <Text style={styles.courseInfo}>{location}</Text>
-        </View>
-        <View
-          style={[styles.infoRow, {alignItems: 'flex-start', marginTop: 4}]}>
-          <Text style={[styles.courseInfo, {textAlign: 'right'}]}>
-            课时数：
-          </Text>
-          <Text style={styles.courseInfo}>{classDuration}分钟</Text>
+          <View
+            style={[styles.infoRow, {alignItems: 'flex-start', marginTop: 4}]}>
+            <Text style={[styles.courseInfo, {textAlign: 'right'}]}>
+              课时数：
+            </Text>
+            <Text style={styles.courseInfo}>{classDuration}分钟</Text>
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

@@ -5,12 +5,20 @@ import {useNavigation} from '@react-navigation/native';
 import UserAdaptiveCourse from '../components/attendClass/UserAdaptiveCourse';
 import {api} from '../../config';
 import UserCourseCard from '../components/attendClass/UserCourseCard';
+import CourseQRCodeModal from '../components/attendClass/CourseQRCodeModal';
 
 const AttendClass = () => {
   const navigation = useNavigation();
   const [courses, setCourses] = useState([]);
   const [adaptiveCourses, setAdaptiveCourses] = useState([]);
   const [offlineOnlineCourses, setOfflineOnlineCourses] = useState([]);
+  const [qrCodeVisible, setQrCodeVisible] = useState(false);
+  const [currentCourseId, setCurrentCourseId] = useState('');
+
+  const handleCourseCardClick = courseId => {
+    setCurrentCourseId(courseId);
+    setQrCodeVisible(true);
+  };
 
   useEffect(() => {
     async function fetchAdaptiveCourses() {
@@ -93,8 +101,16 @@ const AttendClass = () => {
             teacher={course.teacher}
             location={course.location}
             classDuration={course.classDuration}
+            onPress={() => handleCourseCardClick(course.id)}
           />
         ))}
+
+        {/* 引入并渲染 CourseQRCodeModal */}
+        <CourseQRCodeModal
+          visible={qrCodeVisible}
+          onClose={() => setQrCodeVisible(false)}
+          courseId={currentCourseId}
+        />
       </ScrollView>
     </View>
   );
