@@ -18,6 +18,7 @@ const Chat = () => {
       justifyContent: 'center',
       alignItems: 'center',
       zIndex: -1,
+      paddingHorizontal: 20,
     },
     gradient: {
       start: {x: 0, y: 0},
@@ -53,6 +54,11 @@ const Chat = () => {
         {/* 水平分隔线 */}
         <View style={styles.separator} />
 
+        {/* 默认消息 */}
+        <View style={styles.chatBubbleLeft}>
+          <Text style={styles.chatBubbleText}>有什么可以帮助你吗？</Text>
+        </View>
+
         {/* 文本输入框 */}
         <TextInput
           style={styles.inputBox}
@@ -74,8 +80,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
-    paddingBottom: 56,
   },
   imageContainer: {
     alignItems: 'center',
@@ -115,13 +119,29 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 70,
     height: 48,
-    width: '90%',
+    width: '100%',
     paddingHorizontal: 16,
     borderWidth: 1,
     borderColor: '#007AFF',
     backgroundColor: '#fff',
     zIndex: 1,
     borderRadius: 24,
+  },
+  chatBubbleLeft: {
+    backgroundColor: '#fff',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 12,
+    maxWidth: '75%',
+    alignSelf: 'flex-start',
+    marginBottom: 10,
+    marginTop: 10,
+  },
+  chatBubbleText: {
+    fontSize: 16,
+    color: '#000000',
+    lineHeight: 24,
+    textAlign: 'left',
   },
 });
 
