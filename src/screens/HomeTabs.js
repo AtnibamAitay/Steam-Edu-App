@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: '#F2F2F2',
+    backgroundColor: '#fff',
     elevation: 4,
     zIndex: 10,
   },

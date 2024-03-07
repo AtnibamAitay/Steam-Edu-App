@@ -88,13 +88,20 @@ const My = () => {
         style={[
           styles.button,
           {backgroundColor: buttonBackgroundColor},
-          styles.specialMarginButtonGroup, // 需要零间距的按钮组样式
+          styles.specialMarginButtonGroup,
         ]}
         onPress={handleStudentInfoPress}>
-        <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
-          我的信息
-        </Text>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Image
+            source={require('../../assets/icon/my/id-card-h.png')}
+            style={styles.myIcon}
+          />
+          <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
+            我的信息
+          </Text>
+        </View>
       </TouchableOpacity>
+
       <TouchableOpacity
         style={[
           styles.upButton,
@@ -102,10 +109,17 @@ const My = () => {
           styles.specialMarginButtonGroup,
         ]}
         onPress={handleCourseCartPress}>
-        <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
-          选课单
-        </Text>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Image
+            source={require('../../assets/icon/my/arithmetic-buttons.png')}
+            style={styles.myIcon}
+          />
+          <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
+            选课单
+          </Text>
+        </View>
       </TouchableOpacity>
+
       <TouchableOpacity
         style={[
           styles.midButton,
@@ -113,10 +127,17 @@ const My = () => {
           styles.specialMarginButtonGroup,
         ]}
         onPress={handleCourseHistoryPress}>
-        <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
-          课程历史
-        </Text>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Image
+            source={require('../../assets/icon/my/history.png')}
+            style={styles.myIcon}
+          />
+          <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
+            课程历史
+          </Text>
+        </View>
       </TouchableOpacity>
+
       <TouchableOpacity
         style={[
           styles.midButton,
@@ -124,10 +145,17 @@ const My = () => {
           styles.specialMarginButtonGroup,
         ]}
         onPress={handleFavoritePress}>
-        <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
-          收藏
-        </Text>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Image
+            source={require('../../assets/icon/my/like.png')}
+            style={styles.myIcon}
+          />
+          <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
+            收藏
+          </Text>
+        </View>
       </TouchableOpacity>
+
       <TouchableOpacity
         style={[
           styles.downButton,
@@ -135,24 +163,43 @@ const My = () => {
           styles.specialMarginButtonGroup,
         ]}
         onPress={handleCouponPress}>
-        <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
-          优惠券
-        </Text>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Image
+            source={require('../../assets/icon/my/ticket.png')}
+            style={styles.myIcon}
+          />
+          <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
+            优惠券
+          </Text>
+        </View>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={[styles.upButton, {backgroundColor: buttonBackgroundColor}]}
         onPress={handleSettingsPress}>
-        <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
-          设置
-        </Text>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Image
+            source={require('../../assets/icon/my/setting-one.png')}
+            style={styles.myIcon}
+          />
+          <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
+            设置
+          </Text>
+        </View>
       </TouchableOpacity>
+
       <TouchableOpacity
         style={[styles.downButton, {backgroundColor: buttonBackgroundColor}]}
         onPress={handleGivePositiveReviewPress}>
-        <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
-          给我们好评
-        </Text>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Image
+            source={require('../../assets/icon/my/thumbs-up.png')}
+            style={styles.myIcon}
+          />
+          <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
+            给我们好评
+          </Text>
+        </View>
       </TouchableOpacity>
     </View>
   );
@@ -163,6 +210,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 0,
     alignItems: 'center',
+    backgroundColor: '#F8F9FD',
   },
   userProfile: {
     flexDirection: 'column',
@@ -175,6 +223,7 @@ const styles = StyleSheet.create({
     fontFamily: 'NotoSerifSC-Regular',
     textAlign: 'center',
     marginTop: 10,
+    marginBottom: 26,
   },
   button: {
     paddingVertical: 5,
@@ -225,6 +274,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#000000',
     fontFamily: 'NotoSerifSC-Regular',
+    marginLeft: 14,
+  },
+  myIcon: {
+    width: 24,
+    height: 24,
+    marginLeft: 4,
   },
 });
 

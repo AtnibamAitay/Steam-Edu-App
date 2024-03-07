@@ -48,15 +48,15 @@ const CourseQRCodeModal = ({visible, onClose, courseId}) => {
               source={require('../../../assets/img/attendClass/QRcode.png')}
               style={styles.qrCode}
             />
-            <Text style={styles.text}>学生课程码</Text>
-            <Text style={styles.text}>252320021</Text>
+            <Text style={styles.studentCourseCodeTitleText}>学生课程码</Text>
+            <Text style={styles.studentCourseCodeText}>252320021</Text>
             {/*<TouchableOpacity onPress={copyToClipboard} style={styles.copyButton}>*/}
             {/*  <Text style={styles.copyButtonText}>*/}
             {/*    {copied ? '已复制' : '复制'}*/}
             {/*  </Text>*/}
             {/*</TouchableOpacity>*/}
             <TouchableOpacity onPress={onClose} style={styles.closeButton}>
-              <Text style={styles.closeButtonText}>关闭</Text>
+              <Text style={styles.closeButtonText}>确定</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -96,6 +96,20 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#333',
     textAlign: 'left',
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
+  },
+  studentCourseCodeTitleText: {
+    fontSize: 16,
+    color: '#333',
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
+  },
+  studentCourseCodeText: {
+    fontSize: 24,
+    color: '#333',
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
   },
   copyButton: {
     marginLeft: 'auto',
@@ -120,13 +134,15 @@ const styles = StyleSheet.create({
     width: 100,
     paddingVertical: 8,
     paddingHorizontal: 16,
-    borderRadius: 4,
+    borderRadius: 10,
     backgroundColor: '#e8e8e8',
   },
   closeButtonText: {
     color: '#333',
     fontSize: 16,
     alignSelf: 'center',
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
   },
 });
 

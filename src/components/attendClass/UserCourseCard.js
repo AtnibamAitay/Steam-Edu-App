@@ -47,16 +47,16 @@ const UserCourseCard = ({
         <View style={styles.infoSection}>
           <View style={[styles.infoRow, {alignItems: 'flex-start'}]}>
             <Text style={[styles.courseInfo, {textAlign: 'right'}]}>
-              上课地点：
+              上课地点
             </Text>
             <Text style={styles.courseInfo}>{location}</Text>
           </View>
           <View
             style={[styles.infoRow, {alignItems: 'flex-start', marginTop: 4}]}>
             <Text style={[styles.courseInfo, {textAlign: 'right'}]}>
-              课时数：
+              课时数
             </Text>
-            <Text style={styles.courseInfo}>{classDuration}分钟</Text>
+            <Text style={styles.courseInfo}>{classDuration}节</Text>
           </View>
         </View>
       </View>
@@ -81,11 +81,13 @@ const styles = StyleSheet.create({
   courseInfo: {
     fontSize: 14,
     color: '#666666',
-    marginTop: 4,
+    marginTop: 8,
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
   },
   teacherList: {
     flexDirection: 'row',
-    marginTop: 8,
+    marginTop: 12,
   },
   teacherItem: {
     flexDirection: 'row',
@@ -101,11 +103,13 @@ const styles = StyleSheet.create({
     color: '#000000',
     marginLeft: 4,
     fontSize: 14,
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
   },
   infoRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 8,
+    marginTop: 14,
   },
   infoSection: {
     flexDirection: 'column',
@@ -120,7 +124,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 8,
     paddingVertical: 4,
-    alignSelf: 'flex-start',
+    marginRight: 5,
   },
   courseTypeText: {
     color: '#FFFFFF',

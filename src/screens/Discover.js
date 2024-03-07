@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   textTitle: {
-    fontSize: 16,
+    fontSize: 17,
     fontFamily: 'NotoSerifSC-Regular',
     includeFontPadding: false,
     color: '#333',
