@@ -26,7 +26,7 @@ const CouponItem = ({
       {/* 中间名称与有效期部分 */}
       <View style={styles.contentContainer}>
         <Text style={styles.name}>{couponName}</Text>
-        <Text style={styles.expiration}>有效期至：{formattedExpireDate}</Text>
+        <Text style={styles.expiration}>有效期至{formattedExpireDate}</Text>
       </View>
 
       {/* 右侧使用按钮 */}
@@ -48,16 +48,27 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   amountContainer: {
-    width: '30%',
+    width: '28%',
     justifyContent: 'center',
+    alignItems: 'center',
   },
   amount: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontFamily: 'NotoSerifSC-Bold',
+    includeFontPadding: false,
+    color: '#0623CD',
   },
   threshold: {
     marginTop: 4,
-    fontSize: 14,
+    fontSize: 12,
+    color: '#0623CD',
+    backgroundColor: '#E2E5FF',
+    padding: 4,
+    borderRadius: 16,
+    width: '95%',
+    textAlign: 'center',
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
   },
   contentContainer: {
     flex: 1,
@@ -68,21 +79,30 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
     marginBottom: 4,
+    color: '#000',
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
   },
   expiration: {
-    fontSize: 14,
-    color: '#999',
+    fontSize: 12,
+    color: '#000',
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
   },
-  // 右侧使用按钮样式
   useButton: {
-    width: '20%',
-    height: 40,
-    backgroundColor: '#007AFF',
-    borderRadius: 4,
+    width: '18%',
+    height: 34,
+    backgroundColor: '#0623CD',
+    borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  buttonText: {color: '#fff', fontSize: 16, fontWeight: '500'},
+  buttonText: {
+    color: '#fff',
+    fontSize: 14,
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
+  },
 });
 
 export default CouponItem;

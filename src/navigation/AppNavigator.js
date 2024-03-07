@@ -152,7 +152,7 @@ export default function AppNavigator() {
         options={({navigation}) => ({
           title: '学生信息',
           headerStyle: {
-            backgroundColor: scheme === 'dark' ? '#1C1C1C' : '#F2F2F2',
+            backgroundColor: scheme === 'dark' ? '#1C1C1C' : '#FFFFFF',
             shadowOpacity: 0, // iOS
             shadowOffset: {height: 0, width: 0}, // iOS
             shadowRadius: 0, // iOS
@@ -268,7 +268,7 @@ export default function AppNavigator() {
         options={({navigation}) => ({
           title: '优惠券',
           headerStyle: {
-            backgroundColor: scheme === 'dark' ? '#1C1C1C' : '#F2F2F2',
+            backgroundColor: scheme === 'dark' ? '#1C1C1C' : '#F8F9FD',
             shadowOpacity: 0, // iOS
             shadowOffset: {height: 0, width: 0}, // iOS
             shadowRadius: 0, // iOS

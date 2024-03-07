@@ -1,5 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  SafeAreaView,
+  Dimensions,
+} from 'react-native';
 import CourseCard from '../components/discover/CourseCard';
 import {api} from '../../config';
 
@@ -26,7 +33,7 @@ const CourseCartScreen = () => {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <ScrollView>
         {courseList.map((course, index) => (
           <CourseCard
@@ -43,14 +50,14 @@ const CourseCartScreen = () => {
       </ScrollView>
 
       {/* 底部栏 */}
-      <View style={styles.bottomBar}>
-        <Text style={styles.totalPrice}>总金额：￥{totalPrice}</Text>
+      <View style={[styles.bottomBar, {width: Dimensions.get('window').width}]}>
+        <Text style={styles.totalPrice}>￥{totalPrice}</Text>
         <View style={styles.actionButton}>
           {/* 暂时无功能的预约按钮，后续可添加点击事件 */}
-          <Text style={styles.actionButtonText}>预约</Text>
+          <Text style={styles.actionButtonText}>全部预约</Text>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -58,30 +65,40 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 16,
+    paddingBottom: 80,
   },
   totalPrice: {
-    fontSize: 18,
-    fontWeight: 'bold',
+    fontSize: 24,
     color: '#000000',
     marginBottom: 8,
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
   },
   bottomBar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: 50,
-    backgroundColor: '#F5F5F5',
+    height: 80,
+    backgroundColor: '#FFFFFF',
+    paddingHorizontal: 16,
+    width: '100%',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
   },
   actionButton: {
     paddingVertical: 12,
     paddingHorizontal: 16,
-    borderRadius: 4,
-    backgroundColor: '#007AFF',
+    borderRadius: 30,
+    backgroundColor: '#0623CD',
+    width: 150,
   },
   actionButtonText: {
     color: '#FFFFFF',
     fontSize: 16,
-    fontWeight: 'bold',
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
+    textAlign: 'center',
   },
 });
 

@@ -175,7 +175,7 @@ const Chat = () => {
         <TextInput
           style={styles.inputBox}
           placeholder="在此输入..."
-          placeholderTextColor="#3656FC"
+          placeholderTextColor="#0623CD"
           underlineColorAndroid="transparent"
           selectionColor="#007AFF"
           value={inputText}
@@ -261,7 +261,7 @@ const styles = StyleSheet.create({
     height: 48,
     paddingHorizontal: 16,
     borderWidth: 1,
-    borderColor: '#3656FC',
+    borderColor: '#0623CD',
     backgroundColor: '#FFFFFF',
     borderRadius: 24,
     marginRight: 12,
@@ -293,7 +293,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   chatBubbleUser: {
-    backgroundColor: '#3656FC',
+    backgroundColor: '#0623CD',
     alignSelf: 'flex-start',
     marginBottom: 10,
   },
@@ -317,7 +317,7 @@ const styles = StyleSheet.create({
   sendButton: {
     width: 70,
     height: 48,
-    backgroundColor: '#3656FC',
+    backgroundColor: '#0623CD',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 24,

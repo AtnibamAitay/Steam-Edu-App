@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, FlatList, Text, Alert} from 'react-native';
+import {View, FlatList, Text, Alert, StyleSheet} from 'react-native';
 import {api} from '../../config';
 import CouponItem from '../components/my/coupon/CouponItem';
 
@@ -23,7 +23,7 @@ const CouponListScreen = () => {
   }, []);
 
   return (
-    <View style={{flex: 1}}>
+    <View style={styles.container}>
       <FlatList
         data={coupons}
         renderItem={({item}) => (
@@ -37,10 +37,27 @@ const CouponListScreen = () => {
           />
         )}
         keyExtractor={item => String(item.couponId)}
-        ListEmptyComponent={<Text>暂无可用优惠券</Text>}
+        ListEmptyComponent={
+          <View style={styles.emptyTextContainer}>
+            <Text style={{textAlign: 'center'}}>暂无可用优惠券</Text>
+          </View>
+        }
       />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F8F9FD',
+    paddingHorizontal: 16,
+  },
+  emptyTextContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
 export default CouponListScreen;
