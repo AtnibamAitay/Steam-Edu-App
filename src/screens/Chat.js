@@ -7,12 +7,10 @@ import {
   TextInput,
   TouchableOpacity,
   FlatList,
-  Alert,
   KeyboardAvoidingView,
   Platform,
+  Keyboard,
 } from 'react-native';
-import BottomNavigation from '../components/common/BottomNavigation';
-import {useNavigation} from '@react-navigation/native';
 import {api} from '../../config';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -48,21 +46,48 @@ const ChatBubble = ({item}) => (
 );
 
 const Chat = () => {
-  const navigation = useNavigation();
   const [inputText, setInputText] = useState('');
   const [chatMessages, setChatMessages] = useState([
     {
       type: 'header',
     },
     {
-      id: 0,
+      id: 1,
       content: '有什么可以帮助你吗？',
       isUser: false,
     },
   ]);
   const flatListRef = useRef();
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      e => {
+        // 根据键盘的高度动态调整bottom padding
+        if (Platform.OS === 'android') {
+          let keyboardHeight = e.endCoordinates.height;
+          flatListRef.current.setNativeProps({
+            contentInset: {bottom: keyboardHeight},
+          });
+        }
+      },
+    );
+
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => {
+        // 键盘隐藏时恢复原状
+        if (Platform.OS === 'android') {
+          flatListRef.current.setNativeProps({contentInset: {bottom: 0}});
+        }
+      },
+    );
+
+    return () => {
+      keyboardDidShowListener.remove();
+      keyboardDidHideListener.remove();
+    };
+  }, [flatListRef]);
 
   const handleSend = async () => {
     if (inputText) {
@@ -91,13 +116,11 @@ const Chat = () => {
         // 再次更新消息列表，加入从接口获取的回复或错误消息
         setChatMessages(chatMessages => [...chatMessages, newBotMessage]);
       } catch (error) {
-        console.error('Error during request:', error);
         // 加入错误消息
         setChatMessages(chatMessages => [
           ...chatMessages,
           {id: chatMessages.length + 1, content: '请重试', isUser: false},
         ]);
-        Alert.alert('发送失败', '请检查网络连接或稍后再试');
       }
 
       setInputText('');
@@ -106,7 +129,11 @@ const Chat = () => {
 
   const renderItem = ({item}) => {
     if (item.type === 'header') {
-      return <ChatHeader />;
+      return (
+        <View style={styles.headerContainer}>
+          <ChatHeader />
+        </View>
+      );
     }
     return <ChatBubble item={item} />;
   };
@@ -121,16 +148,19 @@ const Chat = () => {
         colors={['#FEF5FF', '#DFE4EE', '#D6E4FF']}
       />
 
+      {/* 添加一个包裹整个内容区域的外层View，用于监听键盘显示/隐藏事件 */}
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={styles.keyboardAvoidingView}>
+        behavior={Platform.OS === 'ios' ? 'padding' : null} // 在Android上取消高度行为
+        style={styles.keyboardAwareContent}>
         <FlatList
           ref={flatListRef}
           data={chatMessages}
           renderItem={renderItem}
           keyExtractor={item =>
-            item.type === 'header' ? 'header-key' : item.id?.toString()
-          } // 修改这里的keyExtractor函数
+            item.type === 'header'
+              ? `header-${Math.random().toString(36).substring(2, 8)}`
+              : chatMessages.indexOf(item).toString()
+          }
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.flatListContent}
           onContentSizeChange={() =>
@@ -145,7 +175,7 @@ const Chat = () => {
         <TextInput
           style={styles.inputBox}
           placeholder="在此输入..."
-          placeholderTextColor="#007AFF"
+          placeholderTextColor="#3656FC"
           underlineColorAndroid="transparent"
           selectionColor="#007AFF"
           value={inputText}
@@ -160,6 +190,10 @@ const Chat = () => {
 };
 
 const styles = StyleSheet.create({
+  keyboardAwareContent: {
+    flex: 1,
+    paddingBottom: Platform.select({ios: 0, android: 0}), // android上的底部距离，以便留出足够的空间给键盘
+  },
   container: {
     flex: 1,
     paddingHorizontal: 20,
@@ -167,6 +201,7 @@ const styles = StyleSheet.create({
   headerContainer: {
     flex: 1,
     alignItems: 'center',
+    marginTop: 50,
   },
   gradientBackground: {
     position: 'absolute',
@@ -181,10 +216,10 @@ const styles = StyleSheet.create({
   },
   inputArea: {
     flexDirection: 'row',
-    padding: 20,
+    padding: 15,
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 40,
+    marginBottom: 55,
   },
   imageContainer: {
     alignItems: 'center',
@@ -199,7 +234,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     alignSelf: 'center',
   },
-
   title: {
     fontSize: 21,
     fontFamily: 'NotoSerifSC-Bold',
@@ -227,7 +261,7 @@ const styles = StyleSheet.create({
     height: 48,
     paddingHorizontal: 16,
     borderWidth: 1,
-    borderColor: '#007AFF',
+    borderColor: '#3656FC',
     backgroundColor: '#FFFFFF',
     borderRadius: 24,
     marginRight: 12,
@@ -259,7 +293,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   chatBubbleUser: {
-    backgroundColor: '#007AFF',
+    backgroundColor: '#3656FC',
     alignSelf: 'flex-start',
     marginBottom: 10,
   },
@@ -281,9 +315,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   sendButton: {
-    width: 60,
+    width: 70,
     height: 48,
-    backgroundColor: '#007AFF',
+    backgroundColor: '#3656FC',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 24,

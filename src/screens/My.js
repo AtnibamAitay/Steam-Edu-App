@@ -75,16 +75,15 @@ const My = () => {
         <Image
           source={avatarUri || defaultAvatar}
           style={{
-            width: 50,
-            height: 50,
-            borderRadius: 25,
+            width: 70,
+            height: 70,
+            borderRadius: 35,
             overflow: 'hidden',
           }}
         />
         <Text style={styles.userName}>{userName}</Text>
       </View>
 
-      {/* 按钮组 */}
       <TouchableOpacity
         style={[
           styles.button,
@@ -98,7 +97,7 @@ const My = () => {
       </TouchableOpacity>
       <TouchableOpacity
         style={[
-          styles.button,
+          styles.upButton,
           {backgroundColor: buttonBackgroundColor},
           styles.specialMarginButtonGroup,
         ]}
@@ -109,7 +108,7 @@ const My = () => {
       </TouchableOpacity>
       <TouchableOpacity
         style={[
-          styles.button,
+          styles.midButton,
           {backgroundColor: buttonBackgroundColor},
           styles.specialMarginButtonGroup,
         ]}
@@ -120,7 +119,7 @@ const My = () => {
       </TouchableOpacity>
       <TouchableOpacity
         style={[
-          styles.button,
+          styles.midButton,
           {backgroundColor: buttonBackgroundColor},
           styles.specialMarginButtonGroup,
         ]}
@@ -131,7 +130,7 @@ const My = () => {
       </TouchableOpacity>
       <TouchableOpacity
         style={[
-          styles.button,
+          styles.downButton,
           {backgroundColor: buttonBackgroundColor},
           styles.specialMarginButtonGroup,
         ]}
@@ -141,16 +140,15 @@ const My = () => {
         </Text>
       </TouchableOpacity>
 
-      {/* 默认间距的按钮 */}
       <TouchableOpacity
-        style={[styles.button, {backgroundColor: buttonBackgroundColor}]}
+        style={[styles.upButton, {backgroundColor: buttonBackgroundColor}]}
         onPress={handleSettingsPress}>
         <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
           设置
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={[styles.button, {backgroundColor: buttonBackgroundColor}]}
+        style={[styles.downButton, {backgroundColor: buttonBackgroundColor}]}
         onPress={handleGivePositiveReviewPress}>
         <Text style={[styles.buttonText, {color: buttonTextBackgroundColor}]}>
           给我们好评
@@ -169,7 +167,7 @@ const styles = StyleSheet.create({
   userProfile: {
     flexDirection: 'column',
     alignItems: 'center',
-    marginTop: 20,
+    marginTop: 90,
   },
   userName: {
     fontSize: 18,
@@ -187,6 +185,38 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  upButton: {
+    paddingVertical: 5,
+    paddingHorizontal: 16,
+    marginVertical: 0,
+    width: '93%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderTopStartRadius: 10,
+    borderTopEndRadius: 10,
+    marginTop: 12,
+  },
+  midButton: {
+    paddingVertical: 5,
+    paddingHorizontal: 16,
+    marginVertical: 8,
+    width: '93%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  downButton: {
+    paddingVertical: 5,
+    paddingHorizontal: 16,
+    marginVertical: 0,
+    width: '93%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderBottomStartRadius: 10,
+    borderBottomEndRadius: 10,
   },
   specialMarginButtonGroup: {
     marginVertical: 0,

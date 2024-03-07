@@ -1,15 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, View, Text} from 'react-native';
-import BottomNavigation from '../components/common/BottomNavigation';
-import {useNavigation} from '@react-navigation/native';
 import UserAdaptiveCourse from '../components/attendClass/UserAdaptiveCourse';
 import {api} from '../../config';
 import UserCourseCard from '../components/attendClass/UserCourseCard';
 import CourseQRCodeModal from '../components/attendClass/CourseQRCodeModal';
 
 const AttendClass = () => {
-  const navigation = useNavigation();
-  const [courses, setCourses] = useState([]);
   const [adaptiveCourses, setAdaptiveCourses] = useState([]);
   const [offlineOnlineCourses, setOfflineOnlineCourses] = useState([]);
   const [qrCodeVisible, setQrCodeVisible] = useState(false);
@@ -65,10 +61,8 @@ const AttendClass = () => {
 
   return (
     <View style={styles.container}>
-      <ScrollView>
-        <View style={styles.titleWrapper}>
-          <Text style={[styles.myClassTitleText]}>我的课程</Text>
-        </View>
+      <ScrollView style={styles.scrollIndicatorInsets}>
+        <Text style={styles.myClassTitleText}>我的课程</Text>
         <View style={styles.titleWrapper}>
           <Text style={[styles.textTitle]}>个性化课程</Text>
         </View>
@@ -117,6 +111,12 @@ const AttendClass = () => {
 };
 
 const styles = StyleSheet.create({
+  scrollIndicatorInsets: {
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   textTitle: {
-    fontSize: 16,
+    fontSize: 18,
     fontFamily: 'NotoSerifSC-Regular',
     includeFontPadding: false,
     color: '#333',
@@ -152,6 +152,8 @@ const styles = StyleSheet.create({
     includeFontPadding: false,
     color: '#333',
     paddingTop: 80,
+    paddingVertical: 8,
+    alignSelf: 'flex-start',
   },
 });
 

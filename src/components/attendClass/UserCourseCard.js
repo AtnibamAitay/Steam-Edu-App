@@ -24,9 +24,17 @@ const UserCourseCard = ({
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.cardContainer}>
-        <Text style={styles.courseTitle}>{`${getCourseTypeText(
-          courseType,
-        )} ${name}`}</Text>
+        <View style={styles.courseInfoRow}>
+          <View style={styles.courseTypeWrapper}>
+            <Text style={styles.courseTypeText}>
+              {getCourseTypeText(courseType)}
+            </Text>
+          </View>
+          <Text style={[styles.courseTitle, styles.courseTitleWithType]}>
+            {`${name}`}
+          </Text>
+        </View>
+
         <Text style={styles.courseInfo}>{`${schoolTime}`}</Text>
         <View style={styles.teacherList}>
           {teacher.map((t, index) => (
@@ -67,7 +75,8 @@ const styles = StyleSheet.create({
   courseTitle: {
     color: '#000000',
     fontSize: 18,
-    fontWeight: 'bold',
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
   },
   courseInfo: {
     fontSize: 14,
@@ -101,6 +110,28 @@ const styles = StyleSheet.create({
   infoSection: {
     flexDirection: 'column',
     justifyContent: 'space-between',
+  },
+  courseInfoRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  courseTypeWrapper: {
+    backgroundColor: '#000000',
+    borderRadius: 8,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    alignSelf: 'flex-start',
+  },
+  courseTypeText: {
+    color: '#FFFFFF',
+    fontSize: 11,
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
+  },
+  courseTitleWithType: {
+    marginLeft: 8,
+    color: '#000000',
+    fontSize: 18,
   },
 });
 
