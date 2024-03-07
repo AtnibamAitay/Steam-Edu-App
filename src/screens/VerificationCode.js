@@ -90,7 +90,7 @@ const VerificationCodeScreen = () => {
         // 导航到首页
         navigation.reset({
           index: 0, // 表示用户处于堆栈中的哪个页面，0 表示第一页
-          routes: [{name: 'Discover'}], // 定义新的路由堆栈，只包含首页
+          routes: [{name: 'HomeTabs'}], // 定义新的路由堆栈，只包含首页
         });
       } else {
         // 登录失败的处理逻辑...
