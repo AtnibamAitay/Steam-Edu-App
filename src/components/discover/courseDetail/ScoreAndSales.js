@@ -10,11 +10,11 @@ const ScoreAndSales = ({
     <View style={styles.cardContainer}>
       {/* 第一列 */}
       <View style={styles.column}>
-        <Text style={styles.score}>{totalComprehensiveScore}</Text>
+        <Text style={styles.count}>{totalComprehensiveScore}</Text>
         <Text style={styles.label}>综合评分</Text>
       </View>
 
-      {/* 分割线 */}
+      {/* 分割线（已修改为等宽）*/}
       <View style={styles.verticalSeparator} />
 
       {/* 第二列 */}
@@ -23,7 +23,7 @@ const ScoreAndSales = ({
         <Text style={styles.label}>累计上课人数</Text>
       </View>
 
-      {/* 分割线 */}
+      {/* 分割线（已修改为等宽）*/}
       <View style={styles.verticalSeparator} />
 
       {/* 第三列 */}
@@ -39,40 +39,40 @@ const styles = StyleSheet.create({
   cardContainer: {
     backgroundColor: '#FFFFFF',
     width: '100%',
-    height: 100,
     padding: 16,
-    borderRadius: 8,
     flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   column: {
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 16,
+    flex: 1,
+    marginRight: 8,
   },
   verticalSeparator: {
-    height: '100%',
     borderRightWidth: 1,
-    borderRightColor: '#CCCCCC',
-    marginVertical: 8,
+    borderRightColor: '#e7e7e7',
+    height: '70%',
+    alignSelf: 'center',
   },
-  separator: {
-    height: 1,
+  horizontalSeparatorContainer: {
+    width: 1,
     backgroundColor: '#CCCCCC',
+    alignSelf: 'stretch',
     marginVertical: 8,
-    width: '100%',
-  },
-  score: {
-    fontSize: 24,
-    fontWeight: 'bold',
   },
   count: {
-    fontSize: 24,
-    fontWeight: 'bold',
+    fontSize: 18,
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
+    color: '#000000',
   },
   label: {
-    fontSize: 14,
+    fontSize: 13,
     color: '#9B9B9B',
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
   },
 });
 

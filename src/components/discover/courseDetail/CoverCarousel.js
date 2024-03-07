@@ -50,7 +50,7 @@ const CoverCarousel = ({covers}) => {
 
 const styles = StyleSheet.create({
   carousel: {
-    height: 200,
+    height: 300,
     overflow: 'hidden',
   },
   imageContainer: {

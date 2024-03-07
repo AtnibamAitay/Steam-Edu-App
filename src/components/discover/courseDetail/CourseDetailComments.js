@@ -11,7 +11,7 @@ const CommentItem = ({comment}) => (
     />
     <View style={styles.commentContent}>
       <Text style={styles.userName}>{comment.userInfo.userName}</Text>
-      <Text>{comment.content}</Text>
+      <Text style={styles.content}>{comment.content}</Text>
     </View>
   </View>
 );
@@ -52,11 +52,11 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FFFFFF',
     padding: 16,
-    borderRadius: 8,
   },
   title: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 18,
+    fontFamily: 'NotoSerifSC-Bold',
+    includeFontPadding: false,
     color: '#000000',
     marginTop: 8,
   },
@@ -76,7 +76,8 @@ const styles = StyleSheet.create({
   },
   userName: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
     color: '#333333',
   },
   commentsList: {
@@ -85,6 +86,12 @@ const styles = StyleSheet.create({
   emptyList: {
     textAlign: 'center',
     color: '#999999',
+  },
+  content: {
+    fontSize: 16,
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
+    color: '#000000',
   },
 });
 

@@ -15,12 +15,11 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: '#FFFFFF',
     padding: 16,
-    borderRadius: 8,
-    marginBottom: 16,
   },
   courseName: {
-    fontSize: 20,
-    fontWeight: 'bold',
+    fontSize: 18,
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
     marginBottom: 8,
     color: '#000000',
   },
@@ -33,9 +32,12 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   infoText: {
-    color: '#999999',
-    fontSize: 14,
+    color: '#6e6e6e',
+    fontSize: 13,
     lineHeight: 20,
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
+    marginTop: 4,
   },
 });
 

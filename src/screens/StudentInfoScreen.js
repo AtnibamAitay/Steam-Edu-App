@@ -111,6 +111,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     paddingHorizontal: 20,
     marginBottom: 100,
+    width: '90%',
   },
   label: {
     fontSize: 14,

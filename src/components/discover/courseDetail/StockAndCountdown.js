@@ -112,17 +112,21 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#0521CD',
     padding: 16,
+    alignItems: 'center',
   },
   price: {
     color: '#fff',
     fontSize: 18,
-    fontWeight: 'bold',
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
     marginBottom: 8,
   },
   stock: {
     color: '#fff',
     fontSize: 16,
     marginBottom: 8,
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
   },
   timeContainer: {
     flexDirection: 'row',
@@ -133,6 +137,8 @@ const styles = StyleSheet.create({
   startTime: {
     color: '#fff',
     fontSize: 16,
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
   },
   countdownContainer: {
     marginTop: 8,
@@ -141,6 +147,8 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
     marginBottom: 8,
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
   },
   progressBarContainer: {
     height: 8,

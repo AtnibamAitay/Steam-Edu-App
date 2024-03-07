@@ -25,13 +25,12 @@ const MerchantInfoCard = ({merchant}) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FFFFFF',
-    borderRadius: 8,
     padding: 16,
-    marginBottom: 16,
   },
   title: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 18,
+    fontFamily: 'NotoSerifSC-Bold',
+    includeFontPadding: false,
     color: '#000000',
     marginBottom: 8,
   },

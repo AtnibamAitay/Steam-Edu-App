@@ -23,8 +23,7 @@ const CourseDescription = ({images}) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FFFFFF',
-    borderRadius: 8,
-    marginBottom: 16,
+    marginBottom: 20,
   },
   title: {
     padding: 12,

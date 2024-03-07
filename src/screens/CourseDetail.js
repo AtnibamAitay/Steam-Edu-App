@@ -18,8 +18,7 @@ const CourseDetail = ({route}) => {
   const [courseCover, setCourseCover] = useState(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const navigation = useNavigation();
-  const refreshControlRef = useRef();
-
+  useRef();
   useEffect(() => {
     fetchCourseDetail();
   }, [courseId]);
@@ -59,8 +58,8 @@ const CourseDetail = ({route}) => {
           <RefreshControl
             refreshing={isRefreshing}
             onRefresh={handleRefresh}
-            tintColor="#FF0000" // 刷新控件的颜色
-            colors={['#00FF00', '#0000FF']} // 指示器颜色动画序列
+            tintColor="#FF0000"
+            colors={['#118d11', '#0000FF']}
           />
         }>
         {courseCover && (
@@ -71,30 +70,42 @@ const CourseDetail = ({route}) => {
 
         {courseDetail && (
           <View style={styles.courseInfoContainer}>
-            {/* 价格、剩余名额及倒计时组件 */}
-            <StockAndCountdown
-              price={courseDetail.price}
-              stock={courseDetail.stock}
-              totalStock={courseDetail.totalStock}
-              startTime={courseDetail.startTime}
-            />
-            {/* 课程名称卡片 */}
-            <CourseNameCard name={courseDetail.name} />
-            {/* 评分与销量统计组件 */}
-            <ScoreAndSales
-              totalComprehensiveScore={courseDetail.totalComprehensiveScore}
-              salesVolume={courseDetail.salesVolume}
-              totalClasses={courseDetail.totalClasses}
-            />
+            <View style={styles.courseInfoItem}>
+              {/* 价格、剩余名额及倒计时组件 */}
+              <StockAndCountdown
+                price={courseDetail.price}
+                stock={courseDetail.stock}
+                totalStock={courseDetail.totalStock}
+                startTime={courseDetail.startTime}
+              />
+            </View>
+            <View style={styles.courseInfoItem}>
+              {/* 课程名称卡片 */}
+              <CourseNameCard name={courseDetail.name} />
+            </View>
+            <View style={styles.courseInfoItem}>
+              {/* 评分与销量统计组件 */}
+              <ScoreAndSales
+                totalComprehensiveScore={courseDetail.totalComprehensiveScore}
+                salesVolume={courseDetail.salesVolume}
+                totalClasses={courseDetail.totalClasses}
+              />
+            </View>
             {/* 教师列表组件 */}
-            <View style={styles.courseInfoContainer}>
+            <View style={styles.courseInfoItem}>
               <TeacherList teacher={courseDetail.teacher} />
             </View>
-            <CourseDetailComments spuId={courseDetail.courseId} />
-            {/* 商户信息卡片 */}
-            <MerchantInfoCard merchant={courseDetail.merchant} />
-            {/* 课程描述 */}
-            <CourseDescription images={courseDetail.detail} />
+            <View style={styles.courseInfoItem}>
+              <CourseDetailComments spuId={courseDetail.courseId} />
+            </View>
+            <View style={styles.courseInfoItem}>
+              {/* 商户信息卡片 */}
+              <MerchantInfoCard merchant={courseDetail.merchant} />
+            </View>
+            <View style={styles.courseInfoItem}>
+              {/* 课程描述 */}
+              <CourseDescription images={courseDetail.detail} />
+            </View>
           </View>
         )}
       </ScrollView>
@@ -112,11 +123,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#F8F9FD',
   },
   carouselContainer: {
-    height: 200,
+    height: 270,
   },
   courseInfoContainer: {
     paddingHorizontal: 16,
-    paddingTop: 16,
+  },
+  courseInfoItem: {
+    marginBottom: 12,
   },
 });
 
