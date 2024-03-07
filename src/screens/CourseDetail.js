@@ -1,5 +1,12 @@
 import React, {useEffect, useState, useRef} from 'react';
-import {ScrollView, RefreshControl, StyleSheet, View} from 'react-native';
+import {
+  ScrollView,
+  RefreshControl,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
 import {api} from '../../config';
 import CoverCarousel from '../components/discover/courseDetail/CoverCarousel';
 import StockAndCountdown from '../components/discover/courseDetail/StockAndCountdown';
@@ -18,6 +25,11 @@ const CourseDetail = ({route}) => {
   const [courseCover, setCourseCover] = useState(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const navigation = useNavigation();
+
+  const handleBackPress = () => {
+    navigation.goBack();
+  };
+
   useRef();
   useEffect(() => {
     fetchCourseDetail();
@@ -52,67 +64,78 @@ const CourseDetail = ({route}) => {
 
   return (
     <>
-      <ScrollView
-        style={styles.container}
-        refreshControl={
-          <RefreshControl
-            refreshing={isRefreshing}
-            onRefresh={handleRefresh}
-            tintColor="#FF0000"
-            colors={['#118d11', '#0000FF']}
+      <View style={styles.container}>
+        {/* 在 ScrollView 外层包裹一层 View，以便在顶部放置返回按钮 */}
+        <TouchableOpacity
+          onPress={handleBackPress}
+          style={styles.backButtonContainer}>
+          <Image
+            source={require('../../assets/icon/common/left.png')}
+            style={styles.backButtonImage}
           />
-        }>
-        {courseCover && (
-          <View style={styles.carouselContainer}>
-            <CoverCarousel covers={courseCover} />
-          </View>
-        )}
+        </TouchableOpacity>
+        <ScrollView
+          style={styles.container}
+          refreshControl={
+            <RefreshControl
+              refreshing={isRefreshing}
+              onRefresh={handleRefresh}
+              tintColor="#FF0000"
+              colors={['#118d11', '#0000FF']}
+            />
+          }>
+          {courseCover && (
+            <View style={styles.carouselContainer}>
+              <CoverCarousel covers={courseCover} />
+            </View>
+          )}
 
-        {courseDetail && (
-          <View style={styles.courseInfoContainer}>
-            <View style={styles.courseInfoItem}>
-              {/* 价格、剩余名额及倒计时组件 */}
-              <StockAndCountdown
-                price={courseDetail.price}
-                stock={courseDetail.stock}
-                totalStock={courseDetail.totalStock}
-                startTime={courseDetail.startTime}
-              />
+          {courseDetail && (
+            <View style={styles.courseInfoContainer}>
+              <View style={styles.courseInfoItem}>
+                {/* 价格、剩余名额及倒计时组件 */}
+                <StockAndCountdown
+                  price={courseDetail.price}
+                  stock={courseDetail.stock}
+                  totalStock={courseDetail.totalStock}
+                  startTime={courseDetail.startTime}
+                />
+              </View>
+              <View style={styles.courseInfoItem}>
+                {/* 课程名称卡片 */}
+                <CourseNameCard name={courseDetail.name} />
+              </View>
+              <View style={styles.courseInfoItem}>
+                {/* 评分与销量统计组件 */}
+                <ScoreAndSales
+                  totalComprehensiveScore={courseDetail.totalComprehensiveScore}
+                  salesVolume={courseDetail.salesVolume}
+                  totalClasses={courseDetail.totalClasses}
+                />
+              </View>
+              {/* 教师列表组件 */}
+              <View style={styles.courseInfoItem}>
+                <TeacherList teacher={courseDetail.teacher} />
+              </View>
+              <View style={styles.courseInfoItem}>
+                <CourseDetailComments spuId={courseDetail.courseId} />
+              </View>
+              <View style={styles.courseInfoItem}>
+                {/* 商户信息卡片 */}
+                <MerchantInfoCard merchant={courseDetail.merchant} />
+              </View>
+              <View style={styles.courseInfoItem}>
+                {/* 课程描述 */}
+                <CourseDescription images={courseDetail.detail} />
+              </View>
             </View>
-            <View style={styles.courseInfoItem}>
-              {/* 课程名称卡片 */}
-              <CourseNameCard name={courseDetail.name} />
-            </View>
-            <View style={styles.courseInfoItem}>
-              {/* 评分与销量统计组件 */}
-              <ScoreAndSales
-                totalComprehensiveScore={courseDetail.totalComprehensiveScore}
-                salesVolume={courseDetail.salesVolume}
-                totalClasses={courseDetail.totalClasses}
-              />
-            </View>
-            {/* 教师列表组件 */}
-            <View style={styles.courseInfoItem}>
-              <TeacherList teacher={courseDetail.teacher} />
-            </View>
-            <View style={styles.courseInfoItem}>
-              <CourseDetailComments spuId={courseDetail.courseId} />
-            </View>
-            <View style={styles.courseInfoItem}>
-              {/* 商户信息卡片 */}
-              <MerchantInfoCard merchant={courseDetail.merchant} />
-            </View>
-            <View style={styles.courseInfoItem}>
-              {/* 课程描述 */}
-              <CourseDescription images={courseDetail.detail} />
-            </View>
-          </View>
-        )}
-      </ScrollView>
-      <BottomBar
-        courseId={courseId}
-        onReservationPress={handleReservationPress}
-      />
+          )}
+        </ScrollView>
+        <BottomBar
+          courseId={courseId}
+          onReservationPress={handleReservationPress}
+        />
+      </View>
     </>
   );
 };
@@ -121,6 +144,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F8F9FD',
+  },
+  backButtonContainer: {
+    position: 'absolute',
+    top: 36,
+    left: 16,
+    zIndex: 100,
+  },
+  backButtonImage: {
+    width: 24,
+    height: 24,
   },
   carouselContainer: {
     height: 270,
