@@ -59,14 +59,17 @@ const StockAndCountdown = ({price, stock, totalStock, startTime}) => {
     <View style={styles.container}>
       {/* 左侧列 */}
       <View style={styles.leftColumn}>
-        {/* 价格 */}
-        <Text style={styles.price}>{`￥${price}`}</Text>
+        <View
+          style={{flexDirection: 'row', alignItems: 'center', marginTop: 8}}>
+          {/* 价格 */}
+          <Text style={styles.price}>{`￥${price}`}</Text>
 
-        {/* 剩余名额 */}
-        <Text style={styles.stock}>
-          {'剩余名额 '}
-          {stock}/{totalStock}
-        </Text>
+          {/* 剩余名额 */}
+          <Text style={[styles.stock, {marginLeft: 4}]}>
+            {'剩余名额 '}
+            {stock}/{totalStock}
+          </Text>
+        </View>
 
         {/* 进度条 */}
         <View style={styles.progressBarContainer}>
@@ -112,26 +115,28 @@ const styles = StyleSheet.create({
     backgroundColor: '#0521CD',
     padding: 16,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   price: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: 22,
     fontFamily: 'NotoSerifSC-Regular',
     includeFontPadding: false,
-    marginBottom: 8,
+    marginRight: 10,
+    marginBottom: 4,
   },
   stock: {
     color: '#fff',
     fontSize: 14,
-    marginBottom: 8,
     fontFamily: 'NotoSerifSC-Regular',
     includeFontPadding: false,
+    marginBottom: 0,
   },
   timeContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 8,
+    marginBottom: 4,
   },
   startTime: {
     color: '#fff',
@@ -139,13 +144,9 @@ const styles = StyleSheet.create({
     fontFamily: 'NotoSerifSC-Regular',
     includeFontPadding: false,
   },
-  countdownContainer: {
-    marginTop: 8,
-  },
   countdown: {
     color: '#fff',
     fontSize: 22,
-    marginBottom: 8,
     fontFamily: 'NotoSerifSC-Regular',
     includeFontPadding: false,
   },

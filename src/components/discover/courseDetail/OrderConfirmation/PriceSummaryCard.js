@@ -44,14 +44,17 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
-    marginBottom: 8,
+    marginTop: 8,
+    marginBottom: 20,
     color: '#000',
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: 16,
   },
   textLeft: {
     flex: 1,
@@ -65,19 +68,25 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
     color: '#000',
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
   },
   value: {
     fontSize: 16,
     color: '#000',
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
   },
   totalLabel: {
     fontSize: 16,
-    fontWeight: '500',
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
     color: '#000',
   },
   totalValue: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
     color: '#000',
   },
 });

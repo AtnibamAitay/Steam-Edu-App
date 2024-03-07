@@ -8,7 +8,6 @@ const BottomBar = ({courseId, onReservationPress}) => {
 
   return (
     <View style={styles.container}>
-      {/* 将“加入选课单”按钮样式调整并移动到前面 */}
       <TouchableOpacity style={styles.addToCourseListButton}>
         <View style={styles.buttonShapeNoFill}>
           <Text style={[styles.buttonText, {color: '#0623CD'}]}>
@@ -16,9 +15,9 @@ const BottomBar = ({courseId, onReservationPress}) => {
           </Text>
         </View>
       </TouchableOpacity>
-
-      {/* 调整“预约”按钮的宽度，并保持原有样式不变 */}
-      <TouchableOpacity style={[styles.button, {flexGrow: 2}]}>
+      <TouchableOpacity
+        style={[styles.button, {flexGrow: 1.3}]}
+        onPress={handleReservationPress}>
         <View style={styles.reservationButtonShape}>
           <Text style={styles.buttonText}>预约</Text>
         </View>
@@ -34,7 +33,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     flexDirection: 'row',
-    paddingHorizontal: 16,
+    paddingHorizontal: 20,
     paddingVertical: 8,
     backgroundColor: '#fff',
     borderTopWidth: 1,
@@ -46,25 +45,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  // “加入选课单”按钮的新样式
   addToCourseListButton: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  // “加入选课单”按钮形状无填充样式
   buttonShapeNoFill: {
     width: 140,
     height: 48,
     borderRadius: 24,
-    borderWidth: 1, // 添加边框
-    borderColor: '#0623CD', // 边框颜色
+    borderWidth: 1,
+    borderColor: '#0623CD',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  // “预约”按钮形状样式保持不变
   reservationButtonShape: {
-    width: 190, // 增加宽度
+    width: 190,
     height: 48,
     borderRadius: 24,
     backgroundColor: '#0623CD',

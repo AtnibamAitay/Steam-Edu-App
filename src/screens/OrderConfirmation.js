@@ -15,20 +15,25 @@ import BottomBar from '../components/discover/courseDetail/OrderConfirmation/Bot
 const PaymentButton = ({title, onPress, selected, color}) => {
   const [active, setActive] = useState(selected);
 
+  useEffect(() => {
+    setActive(selected);
+  }, [selected]);
+
   return (
     <TouchableOpacity
       style={[
         styles.paymentButton,
         {
-          borderColor: active ? color : '#ddd',
-          backgroundColor: active ? color : '#fff',
+          borderWidth: active ? 3 : 0,
+          borderColor: active ? color : 'transparent',
+          backgroundColor: '#fff',
         },
       ]}
       onPress={() => {
-        setActive(!active);
-        onPress();
+        setActive(false);
+        onPress(active ? null : title);
       }}>
-      <Text style={[styles.buttonText, {color: active ? '#fff' : '#333'}]}>
+      <Text style={[styles.buttonText, {color: active ? '#333' : '#000'}]}>
         {title}
       </Text>
     </TouchableOpacity>
@@ -38,12 +43,11 @@ const PaymentButton = ({title, onPress, selected, color}) => {
 const OrderConfirmation = ({route}) => {
   const [orderInfo, setOrderInfo] = useState(null);
   const courseId = route.params.courseId;
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('alipay'); // 默认选中支付宝支付
 
   const handlePaymentSelection = paymentMethod => {
     setSelectedPaymentMethod(paymentMethod);
   };
-
   useEffect(() => {
     const fetchOrderInfo = async () => {
       try {
@@ -58,7 +62,30 @@ const OrderConfirmation = ({route}) => {
     };
 
     fetchOrderInfo();
+    setActiveForPayment('alipay');
   }, [courseId]);
+
+  const setActiveForPayment = method => {
+    if (method === 'alipay') {
+      setAlipayActive(true);
+      setWechatActive(false);
+    } else if (method === 'wechat') {
+      setAlipayActive(false);
+      setWechatActive(true);
+    }
+  };
+
+  const [alipayActive, setAlipayActive] = useState(true);
+  const [wechatActive, setWechatActive] = useState(false);
+
+  useEffect(() => {
+    // 监听selectedPaymentMethod的变化，并相应地更新按钮状态
+    if (selectedPaymentMethod === 'alipay') {
+      setActiveForPayment('alipay');
+    } else if (selectedPaymentMethod === 'wechat') {
+      setActiveForPayment('wechat');
+    }
+  }, [selectedPaymentMethod]);
 
   return (
     <>
@@ -101,14 +128,18 @@ const OrderConfirmation = ({route}) => {
             }}>
             <PaymentButton
               title="支付宝支付"
-              onPress={() => handlePaymentSelection('alipay')}
-              selected={selectedPaymentMethod === 'alipay'}
-              color="#00bfff"
+              onPress={isActive =>
+                handlePaymentSelection(isActive ? 'alipay' : null)
+              }
+              selected={alipayActive}
+              color="#0371ff"
             />
             <PaymentButton
               title="微信支付"
-              onPress={() => handlePaymentSelection('wechat')}
-              selected={selectedPaymentMethod === 'wechat'}
+              onPress={isActive =>
+                handlePaymentSelection(isActive ? 'wechat' : null)
+              }
+              selected={wechatActive}
               color="#00c853"
             />
           </View>
@@ -134,10 +165,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
   },
-  studentName: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
   contact: {
     marginTop: 4,
     fontSize: 16,
@@ -145,18 +172,23 @@ const styles = StyleSheet.create({
   paymentTitle: {
     fontSize: 16,
     color: '#000',
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
+    marginBottom: 16,
   },
   paymentButton: {
     flex: 1,
-    borderWidth: 1,
-    borderRadius: 4,
+    borderRadius: 12,
     padding: 12,
-    marginHorizontal: 8,
     alignItems: 'center',
+    flexBasis: 160,
+    marginRight: 8,
   },
   buttonText: {
     fontSize: 16,
-    fontWeight: 'bold',
+    color: '#000',
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
   },
 });
 

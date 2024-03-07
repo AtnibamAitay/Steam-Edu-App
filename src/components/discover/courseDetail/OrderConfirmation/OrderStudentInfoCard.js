@@ -31,13 +31,16 @@ const styles = StyleSheet.create({
   },
   studentName: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontFamily: 'NotoSerifSC-Bold',
+    includeFontPadding: false,
     color: '#000',
   },
   contact: {
     marginTop: 4,
     fontSize: 16,
     color: '#000',
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
   },
 });
 

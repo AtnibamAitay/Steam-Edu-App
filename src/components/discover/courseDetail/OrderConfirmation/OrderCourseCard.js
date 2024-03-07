@@ -68,22 +68,21 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     color: '#000000',
     fontSize: 18,
-    fontWeight: 'bold',
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
   },
   courseSubInfo: {
     marginTop: 4,
     fontSize: 14,
     color: '#666666',
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
   },
   courseTitle: {
     color: '#000000',
     fontSize: 18,
-    fontWeight: 'bold',
-  },
-  courseInfo: {
-    fontSize: 14,
-    color: '#666666',
-    marginTop: 4,
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
   },
   avatar: {
     width: 30,
@@ -103,7 +102,8 @@ const styles = StyleSheet.create({
   priceText: {
     color: '#000000',
     fontSize: 16,
-    fontWeight: 'bold',
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
   },
 });
 
