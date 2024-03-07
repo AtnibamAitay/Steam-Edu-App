@@ -29,10 +29,10 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
-    fontFamily: 'NotoSerifSC-Bold',
+    fontFamily: 'NotoSerifSC-Regular',
     includeFontPadding: false,
     color: '#000000',
-    marginBottom: 8,
+    marginBottom: 16,
   },
   infoRow: {
     flexDirection: 'row',
@@ -49,12 +49,16 @@ const styles = StyleSheet.create({
   },
   userName: {
     fontSize: 14,
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
     color: '#333333',
   },
   userIntroduction: {
-    fontSize: 12,
-    color: '#999999',
+    fontSize: 14,
+    color: '#707070',
     marginTop: 4,
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
   },
 });
 

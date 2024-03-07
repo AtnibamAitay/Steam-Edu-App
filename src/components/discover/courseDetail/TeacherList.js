@@ -26,14 +26,13 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FFFFFF',
     padding: 16,
-    width: '100%',
   },
   header: {
     fontSize: 18,
-    fontFamily: 'NotoSerifSC-Bold',
+    fontFamily: 'NotoSerifSC-Regular',
     includeFontPadding: false,
     color: '#000000',
-    marginTop: 8,
+    marginBottom: 16,
   },
   teacherRow: {
     flexDirection: 'row',
@@ -52,10 +51,19 @@ const styles = StyleSheet.create({
   teacherName: {
     fontSize: 14,
     color: '#000000',
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
   },
   role: {
     fontSize: 12,
     color: '#666666',
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
+  },
+  teacherItem: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });
 

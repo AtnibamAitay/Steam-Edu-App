@@ -28,8 +28,9 @@ const styles = StyleSheet.create({
   title: {
     padding: 12,
     fontSize: 18,
-    fontWeight: 'bold',
-    color: '#333333',
+    fontFamily: 'NotoSerifSC-Regular',
+    includeFontPadding: false,
+    color: '#000000',
     marginBottom: 8,
   },
   imageContainer: {

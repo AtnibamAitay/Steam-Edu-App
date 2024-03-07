@@ -97,14 +97,13 @@ const StockAndCountdown = ({price, stock, totalStock, startTime}) => {
   );
 };
 
-// 更新样式表以支持两列布局
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   leftColumn: {
-    flex: 1,
+    flex: 1.8,
     backgroundColor: '#3656FC',
     padding: 16,
   },
@@ -123,7 +122,7 @@ const styles = StyleSheet.create({
   },
   stock: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: 14,
     marginBottom: 8,
     fontFamily: 'NotoSerifSC-Regular',
     includeFontPadding: false,
@@ -136,7 +135,7 @@ const styles = StyleSheet.create({
   },
   startTime: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: 'NotoSerifSC-Regular',
     includeFontPadding: false,
   },
@@ -145,7 +144,7 @@ const styles = StyleSheet.create({
   },
   countdown: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: 22,
     marginBottom: 8,
     fontFamily: 'NotoSerifSC-Regular',
     includeFontPadding: false,
