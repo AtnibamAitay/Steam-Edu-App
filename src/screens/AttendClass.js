@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {ScrollView, StyleSheet, View, Text} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {ScrollView, StyleSheet, View, Text, RefreshControl} from 'react-native';
 import UserAdaptiveCourse from '../components/attendClass/UserAdaptiveCourse';
 import {api} from '../../config';
 import UserCourseCard from '../components/attendClass/UserCourseCard';
@@ -10,45 +10,56 @@ const AttendClass = () => {
   const [offlineOnlineCourses, setOfflineOnlineCourses] = useState([]);
   const [qrCodeVisible, setQrCodeVisible] = useState(false);
   const [currentCourseId, setCurrentCourseId] = useState('');
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   const handleCourseCardClick = courseId => {
     setCurrentCourseId(courseId);
     setQrCodeVisible(true);
   };
 
-  useEffect(() => {
-    async function fetchAdaptiveCourses() {
-      try {
-        const response = await api.get('/user/course/adaptive');
-        if (response.status === 200 && response.data.code === 200) {
-          setAdaptiveCourses(response.data.data);
-        } else {
-          console.error('Failed to fetch adaptive courses:', response.data.msg);
-        }
-      } catch (error) {
-        console.error('Error during fetching adaptive courses:', error);
-      }
+  // 下拉刷新的回调函数
+  const handleRefresh = async () => {
+    setIsRefreshing(true);
+    try {
+      await fetchAdaptiveCourses();
+      await fetchOfflineOnlineCourses();
+    } catch (error) {
+      console.error('Failed to refresh data:', error);
+    } finally {
+      setIsRefreshing(false);
     }
+  };
 
-    async function fetchOfflineOnlineCourses() {
-      try {
-        const response = await api.get('/user/course');
-        if (response.status === 200 && response.data.code === 200) {
-          setOfflineOnlineCourses(response.data.data);
-        } else {
-          console.error(
-            'Failed to fetch offline and online courses:',
-            response.data.msg,
-          );
-        }
-      } catch (error) {
+  const fetchAdaptiveCourses = async () => {
+    try {
+      const response = await api.get('/user/course/adaptive');
+      if (response.status === 200 && response.data.code === 200) {
+        setAdaptiveCourses(response.data.data);
+      } else {
+        console.error('Failed to fetch adaptive courses:', response.data.msg);
+      }
+    } catch (error) {
+      console.error('Error during fetching adaptive courses:', error);
+    }
+  };
+
+  const fetchOfflineOnlineCourses = async () => {
+    try {
+      const response = await api.get('/user/course');
+      if (response.status === 200 && response.data.code === 200) {
+        setOfflineOnlineCourses(response.data.data);
+      } else {
         console.error(
-          'Error during fetching offline and online courses:',
-          error,
+          'Failed to fetch offline and online courses:',
+          response.data.msg,
         );
       }
+    } catch (error) {
+      console.error('Error during fetching offline and online courses:', error);
     }
+  };
 
+  useEffect(() => {
     fetchAdaptiveCourses();
     fetchOfflineOnlineCourses();
   }, []);
@@ -61,7 +72,11 @@ const AttendClass = () => {
 
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.scrollIndicatorInsets}>
+      <ScrollView
+        style={styles.scrollIndicatorInsets}
+        refreshControl={
+          <RefreshControl refreshing={isRefreshing} onRefresh={handleRefresh} />
+        }>
         <Text style={styles.myClassTitleText}>我的课程</Text>
         <View style={styles.titleWrapper}>
           <Text style={[styles.textTitle]}>个性化课程</Text>
