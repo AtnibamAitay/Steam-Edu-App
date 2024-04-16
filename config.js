@@ -13,7 +13,7 @@ const getEnvVars = (env = process.env.NODE_ENV) => CONFIG[env];
 
 const api = axios.create({
   baseURL: getEnvVars().API_URL,
-  timeout: 5000,
+  timeout: 25000,
 });
 
 // 请求拦截器

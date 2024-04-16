@@ -125,7 +125,7 @@ const AccountInputScreen = () => {
           value={accountNumber}
           maxLength={30}
           placeholderTextColor="#C6C6C6"
-          selectionColor="#800080"
+          selectionColor="#266BF1"
         />
       </View>
       <View style={styles.buttonContainer}>
